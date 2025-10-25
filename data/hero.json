@@ -1,0 +1,24 @@
+{
+  "name": "Adnan Rafiq",
+  "title": "Safety Officer",
+  "subtitle": "NEBOSH Certified | First Aid | Fire Safety | Work at Height | Risk Assessment",
+  "description": "Dedicated safety professional with 5+ years of experience ensuring workplace safety and compliance.",
+  "profileImage": "/adnan2.png",
+  "iosh": "/iosh.png",
+  "nebosh": "/nebosh.png",
+  "osha": "/osha.png",
+  "logo": "/logo-2.png",
+  "buttons": [
+    {
+      "text": "Download CV",
+      "type": "primary",
+      "icon": "Download"
+    },
+    {
+      "text": "Contact Me",
+      "type": "outline",
+      "icon": "Mail",
+      "action": "scrollToContact"
+    }
+  ]
+}

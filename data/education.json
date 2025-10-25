@@ -1,0 +1,31 @@
+{
+  "title": "Education & Training",
+  "subtitle": "Academic qualifications and internationally recognized safety certifications",
+  "education": [
+    {
+      "degree": "Bachelor’s Degree in Computer Science",
+      "institution": "University of Karachi",
+      "location": "Peshawar, Pakistan",
+      "period": "2020 - 2024",
+      "status": "Graduated",
+      "description": "Studied computer systems, programming, and database management with practical knowledge in digital safety tools and automation."
+    },
+        {
+      "degree": "Professional International Safety Certifications",
+      "institution": "Accredited Global Safety Training Bodies",
+      "location": "UAE & Pakistan",
+      "period": "2021 - 2024",
+      "status": "Certified",
+      "description": "Holds multiple internationally recognized safety certifications including NEBOSH IGC, IOSH Managing Safely, OSHA Safety & Health, Fire Safety, First Aid, Work at Height, and Risk Assessment Training."
+    },
+    {
+      "degree": "Diploma in Information Technology (DIT)",
+      "institution": "Technical Education Board",
+      "location": "Peshawar, Pakistan",
+      "period": "2015 - 2016",
+      "status": "Completed",
+      "description": "Comprehensive training in computer fundamentals, networking, software development, and AI-based web and app solutions."
+    }
+
+  ]
+}
