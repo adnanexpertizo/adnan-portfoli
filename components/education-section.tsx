@@ -42,7 +42,7 @@ export function EducationSection() {
     <section
       ref={sectionRef}
       id="education"
-      className="py-20 overflow-hidden bg-muted/50 relative"
+      className="py-20 overflow-hidden bg-background relative"
     >
       <div className="container lg:px-36 md:px-16 px-4 mx-auto relative">
         {/* Header */}

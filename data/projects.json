@@ -1,62 +1,101 @@
 {
   "title": "My Projects",
-  "subtitle": "A showcase of my latest full-stack and front-end web applications built with modern frameworks.",
-  "projects": [
+  "subtitle": "Here’s a collection of my personal learning projects and professional works built using various modern technologies.",
+  "personal": [
     {
       "id": 1,
-      "imag": "/images/e-comerce-1.PNG",
+      
       "link": "https://hakthonpro.vercel.app/",
       "proname": "E-commerce Website",
-      "techname": "Next.js + Redux",
-      "discription": "An e-commerce site allowing users to browse, view details, and manage cart items for a smooth shopping experience."
+      "techname": "Next.js, Redux",
+      "discription": "A responsive e-commerce web app where users can browse, search, and buy products seamlessly. Focused on UI performance and cart management."
     },
     {
       "id": 2,
-      "imag": "/images/social media.jpg",
+    
       "link": "https://socailmediaapp.vercel.app/",
       "proname": "Social Media App",
-      "techname": "React + Node + MongoDB",
-      "discription": "A full-featured social media app supporting posts, comments, likes, and media sharing with authentication and authorization."
+      "techname": "React, Node.js, MongoDB",
+      "discription": "A complete social media platform supporting posts, likes, comments, and user authentication — built for practical full-stack learning."
     },
     {
       "id": 3,
-      "imag": "/images/gallery-photo.PNG",
+     
       "link": "https://photogalleryui.vercel.app/",
       "proname": "Photo Gallery",
       "techname": "MERN Stack",
-      "discription": "A photo-sharing app with authentication, privacy control, folder organization, and full CRUD functionality."
+      "discription": "A photo management app where users can upload, organize, and manage visibility of images (public/private) securely."
     },
     {
       "id": 4,
-      "imag": "/images/fullCrud-3.PNG",
+      
       "link": "https://fullauthrized-crud.vercel.app/",
       "proname": "Full Authorized CRUD",
-      "techname": "Next.js + Express + MongoDB",
-      "discription": "A secure CRUD application with authentication, password recovery, and theme switcher supporting file attachments."
+      "techname": "Next.js, Express, MongoDB",
+      "discription": "A secure CRUD app with authentication and password recovery system using 6-digit OTP verification."
     },
     {
       "id": 5,
-      "imag": "/images/addcontact.PNG",
       "link": "https://contact-list-bice-zeta.vercel.app/",
-      "proname": "Contact List App",
-      "techname": "Next.js + Redux + Express",
-      "discription": "A simple yet efficient contact manager allowing users to save, edit, and delete contacts with persistent storage."
+      "proname": "Contact List",
+      "techname": "Next.js, Redux, Express",
+      "discription": "A simple app to add, edit, and manage contact details during my early learning phase."
     },
     {
       "id": 6,
-      "imag": "/images/joobseeker.PNG",
       "link": "https://jobseekerfrontend.vercel.app",
-      "proname": "Job Seeker Platform",
+      "proname": "Job Seeker",
       "techname": "MERN Stack",
-      "discription": "A job portal for employers to post jobs and seekers to apply, featuring authentication and role-based access."
+      "discription": "A platform connecting job seekers and employers with authentication and job posting/searching functionalities."
     },
     {
       "id": 7,
-      "imag": "/images/todo.PNG",
       "link": "https://adnanyousafzai21.github.io/Todo_List/",
-      "proname": "To-Do List",
-      "techname": "React + Express",
-      "discription": "A task management app with add, edit, and delete features for keeping track of daily tasks."
+      "proname": "ToDo List",
+      "techname": "React, Express",
+      "discription": "A simple to-do app created to learn state management and CRUD basics during my early practice."
+    }
+  ],
+  "professional": [
+    {
+      "id": 1,
+      "proname": "Madrasa – Education Management Web App",
+      "techname": "MERN Stack",
+      "discription": "Developed with a team to manage education institutions — featuring Admin, Teacher, and Student panels for classes, schedules, fees, chat, and more.",
+      "link": "restricted",
+      "organization": "Decotechs"
+    },
+    {
+      "id": 2,
+      "proname": "Time Tracking Application with Real-Time Data",
+      "techname": "React, Electron, Firebase",
+      "discription": "Built a real-time productivity tracking system with screenshot capture, session management, and location tracking.",
+      "link": "restricted",
+      "organization": "Decotechs"
+    },
+    {
+      "id": 3,
+      "proname": "Pertime – HR and Organization Management",
+      "techname": "MERN Stack",
+      "discription": "Built admin & employee dashboards, handling attendance, leave, reports, and payroll integration for HR teams.",
+      "link": "restricted",
+      "organization": "Expertizo"
+    },
+    {
+      "id": 4,
+      "proname": "Crypto Platform Frontend Development",
+      "techname": "Next.js, Blockchain APIs",
+      "discription": "Worked on crypto dashboards, wallet integrations, and blockchain-based data visualization for secure transactions.",
+      "link": "restricted",
+      "organization": "Expertizo"
+    },
+    {
+      "id": 5,
+      "proname": "Chat Support Application",
+      "techname": "React, Firebase",
+      "discription": "Developed a real-time chat and customer support web application for internal organization use.",
+      "link": "restricted",
+      "organization": "Expertizo"
     }
   ]
 }

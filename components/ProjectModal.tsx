@@ -1,101 +1,54 @@
 "use client";
 
+import { ExternalLink, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { X } from "lucide-react";
 
-interface ProjectModalProps {
-  project: any;
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
-  if (!isOpen) return null;
+export function ProjectModal({ project, isOpen, onClose }: any) {
+  if (!isOpen || !project) return null;
 
   return (
-    <>
-      {/* Project Modal */}
-      <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex justify-center items-center z-50 px-4">
-        <div
-          className="
-            relative bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl
-            max-w-3xl w-full animate-fadeIn
-          "
-        >
-          {/* Close Button */}
-          <button
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50 p-4">
+      <div className="bg-white dark:bg-neutral-900 rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative animate-fadeIn border border-border flex flex-col justify-between">
+        {/* Title */}
+        <h3 className="text-xl font-semibold text-center mb-4">
+          {project.proname}
+        </h3>
+
+        {/* Image */}
+        {project.imag && (
+          <img
+            src={project.imag}
+            alt={project.proname}
+            className="w-full h-[230px] object-cover rounded-lg mb-4"
+          />
+        )}
+
+        {/* Description */}
+        <p className="text-sm text-muted-foreground text-center whitespace-pre-line leading-relaxed mb-6 overflow-y-auto max-h-[300px]">
+          {project.discription}
+        </p>
+
+        {/* Buttons - bottom right */}
+        <div className="flex justify-end gap-3 mt-auto">
+          {project.link !== "restricted" && (
+            <Button
+              size="sm"
+              className="text-[13px] bg-primary text-white flex items-center gap-2 h-[40px]"
+              onClick={() => window.open(project.link, "_blank")}
+            >
+              <ExternalLink className="h-4 w-4" /> Visit
+            </Button>
+          )}
+          <Button
+            size="sm"
+            variant="outline"
+            className="text-[13px] h-[40px] flex items-center gap-2"
             onClick={onClose}
-            className="absolute top-3 right-3 text-gray-500 hover:text-red-500 transition-all"
           >
-            <X className="w-5 h-5" />
-          </button>
-
-          {/* Project Details */}
-          <div className="p-6 space-y-4">
-            {/* Title & Meta */}
-            <div className="text-center">
-              <h2 className="text-xl font-semibold mb-1">{project?.title}</h2>
-              <p className="text-sm text-muted-foreground">
-                {project?.techStack?.join(" • ")}
-              </p>
-            </div>
-
-            {/* Image */}
-            {project?.image && (
-              <div
-                className="
-                  rounded-lg overflow-hidden border shadow-inner
-                  max-h-[60vh] overflow-y-auto
-                  scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent
-                "
-              >
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full object-contain"
-                />
-              </div>
-            )}
-
-            {/* Description */}
-            <div className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-              {project?.description}
-            </div>
-
-            {/* Links */}
-            <div className="flex justify-center gap-4 mt-4">
-              {project?.github && (
-                <Button
-                  variant="outline"
-                  className="text-sm"
-                  onClick={() => window.open(project.github, "_blank")}
-                >
-                  View Code
-                </Button>
-              )}
-              {project?.live && (
-                <Button
-                  className="bg-primary text-white text-sm"
-                  onClick={() => window.open(project.live, "_blank")}
-                >
-                  Live Demo
-                </Button>
-              )}
-            </div>
-
-            {/* Close Button */}
-            <div className="mt-6 flex justify-center">
-              <Button
-                variant="outline"
-                onClick={onClose}
-                className="border-2 border-border hover:bg-primary hover:text-white text-sm"
-              >
-                Close
-              </Button>
-            </div>
-          </div>
+            <X className="h-4 w-4" /> Close
+          </Button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
