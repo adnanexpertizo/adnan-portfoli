@@ -1,4 +1,3 @@
-// AskModal.tsx
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -14,10 +13,10 @@ export function AskModal({ openModal, setOpenModal }: AskModalProps) {
   const [answer, setAnswer] = useState("");
 
   const fullAnswer =
-    "Adnan Rafiq is a NEBOSH Certified Safety Officer with 5+ years of professional experience.\n" +
-    "Specialized in First Aid, Fire Safety, Risk Assessment, and Work at Height practices.\n" +
-    "Skilled in safety training, incident investigation, and compliance auditing.\n" +
-    "Dedicated to creating safer workplaces through proactive risk management.";
+    "Adnan Rafiq is a MERN Stack Developer with 3 years of experience building dynamic and scalable web applications.\n" +
+    "Expert in React.js, Next.js, Node.js, Express, MongoDB, and Firebase.\n" +
+    "Skilled in creating clean, responsive UIs and robust APIs.\n" +
+    "Strong problem solver with a passion for modern web technologies, GenAI tools, and continuous learning.";
 
   const handleSend = () => {
     if (!question.trim()) return;
@@ -46,7 +45,6 @@ export function AskModal({ openModal, setOpenModal }: AskModalProps) {
   return (
     <>
       <div className="relative w-full max-w-md">
-        {/* Animated Border Wrapper with theme color */}
         <div
           className="rounded-full p-[2px] bg-gradient-to-r from-primary to-primary/70 
                   animate-[gradientShift_6s_linear_infinite] focus-within:shadow-sm 
@@ -77,8 +75,7 @@ export function AskModal({ openModal, setOpenModal }: AskModalProps) {
           onClick={handleSend}
           className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full 
                bg-primary text-primary-foreground hover:bg-primary/90 
-               transition transform hover:scale-105 
-               "
+               transition transform hover:scale-105"
           aria-label="Send"
         >
           <Send size={20} className="rotate-45" />

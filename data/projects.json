@@ -1,0 +1,62 @@
+{
+  "title": "My Projects",
+  "subtitle": "A showcase of my latest full-stack and front-end web applications built with modern frameworks.",
+  "projects": [
+    {
+      "id": 1,
+      "imag": "/images/e-comerce-1.PNG",
+      "link": "https://hakthonpro.vercel.app/",
+      "proname": "E-commerce Website",
+      "techname": "Next.js + Redux",
+      "discription": "An e-commerce site allowing users to browse, view details, and manage cart items for a smooth shopping experience."
+    },
+    {
+      "id": 2,
+      "imag": "/images/social media.jpg",
+      "link": "https://socailmediaapp.vercel.app/",
+      "proname": "Social Media App",
+      "techname": "React + Node + MongoDB",
+      "discription": "A full-featured social media app supporting posts, comments, likes, and media sharing with authentication and authorization."
+    },
+    {
+      "id": 3,
+      "imag": "/images/gallery-photo.PNG",
+      "link": "https://photogalleryui.vercel.app/",
+      "proname": "Photo Gallery",
+      "techname": "MERN Stack",
+      "discription": "A photo-sharing app with authentication, privacy control, folder organization, and full CRUD functionality."
+    },
+    {
+      "id": 4,
+      "imag": "/images/fullCrud-3.PNG",
+      "link": "https://fullauthrized-crud.vercel.app/",
+      "proname": "Full Authorized CRUD",
+      "techname": "Next.js + Express + MongoDB",
+      "discription": "A secure CRUD application with authentication, password recovery, and theme switcher supporting file attachments."
+    },
+    {
+      "id": 5,
+      "imag": "/images/addcontact.PNG",
+      "link": "https://contact-list-bice-zeta.vercel.app/",
+      "proname": "Contact List App",
+      "techname": "Next.js + Redux + Express",
+      "discription": "A simple yet efficient contact manager allowing users to save, edit, and delete contacts with persistent storage."
+    },
+    {
+      "id": 6,
+      "imag": "/images/joobseeker.PNG",
+      "link": "https://jobseekerfrontend.vercel.app",
+      "proname": "Job Seeker Platform",
+      "techname": "MERN Stack",
+      "discription": "A job portal for employers to post jobs and seekers to apply, featuring authentication and role-based access."
+    },
+    {
+      "id": 7,
+      "imag": "/images/todo.PNG",
+      "link": "https://adnanyousafzai21.github.io/Todo_List/",
+      "proname": "To-Do List",
+      "techname": "React + Express",
+      "discription": "A task management app with add, edit, and delete features for keeping track of daily tasks."
+    }
+  ]
+}

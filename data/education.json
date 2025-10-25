@@ -1,31 +1,39 @@
 {
   "title": "Education & Training",
-  "subtitle": "Academic qualifications and internationally recognized safety certifications",
+  "subtitle": "Academic qualifications and internationally recognized safety certifications.",
   "education": [
     {
       "degree": "Bachelor’s Degree in Computer Science",
-      "institution": "University of Karachi",
-      "location": "Peshawar, Pakistan",
+      "institution": "Federal Urdu University of Arts, Science & Technology (FUUAST)",
+      "location": "Karachi, Pakistan",
       "period": "2020 - 2024",
       "status": "Graduated",
-      "description": "Studied computer systems, programming, and database management with practical knowledge in digital safety tools and automation."
-    },
-        {
-      "degree": "Professional International Safety Certifications",
-      "institution": "Accredited Global Safety Training Bodies",
-      "location": "UAE & Pakistan",
-      "period": "2021 - 2024",
-      "status": "Certified",
-      "description": "Holds multiple internationally recognized safety certifications including NEBOSH IGC, IOSH Managing Safely, OSHA Safety & Health, Fire Safety, First Aid, Work at Height, and Risk Assessment Training."
+      "details": [
+        "Studied software engineering, databases, and computer systems.",
+        "Focused on modern web development and automation concepts."
+      ]
     },
     {
-      "degree": "Diploma in Information Technology (DIT)",
-      "institution": "Technical Education Board",
-      "location": "Peshawar, Pakistan",
-      "period": "2015 - 2016",
-      "status": "Completed",
-      "description": "Comprehensive training in computer fundamentals, networking, software development, and AI-based web and app solutions."
+      "degree": "Full Stack Web Development (MERN)",
+      "institution": "Saylani Mass IT Training (SMIT)",
+      "location": "Karachi, Pakistan",
+      "period": "2022 - 2023",
+      "status": "Certified",
+      "details": [
+        "Completed one-year training focused on React.js, Node.js, and MongoDB.",
+        "Developed multiple real-world web projects with responsive UI."
+      ]
+    },
+    {
+      "degree": "Professional International Safety Certifications",
+      "institution": "Accredited Global Safety Training Bodies",
+      "location": "Pakistan & UAE",
+      "period": "2021 - 2024",
+      "status": "Certified",
+      "details": [
+        "Holds NEBOSH IGC, IOSH Managing Safely, OSHA Safety & Health, Fire Safety, and Risk Assessment certifications.",
+        "Integrated digital systems with safety and compliance automation."
+      ]
     }
-
   ]
 }

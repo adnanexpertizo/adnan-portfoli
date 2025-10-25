@@ -1,35 +1,30 @@
 {
   "title": "Professional Experience",
-  "subtitle": "Proven track record in workplace safety management and implementation of international safety standards",
+  "subtitle": "Building modern web apps and digital platforms through hands-on development and teamwork.",
   "experiences": [
     {
-      "title": "Safety Officer",
-      "company": "BRT Metro Project (TransPeshawar)",
-      "location": "Peshawar, Pakistan",
-      "period": "2019 - 2024",
-      "type": "Full-time",
-      "responsibilities": [
-        "Led safety operations for major infrastructure and construction activities at BRT Metro Project.",
-        "Conducted comprehensive risk assessments and implemented preventive safety measures.",
-        "Ensured compliance with NEBOSH and OSHA-based safety protocols on-site.",
-        "Organized regular safety trainings, toolbox talks, and emergency response drills.",
-        "Investigated accidents and near-misses, recommending effective corrective actions.",
-        "Maintained accurate safety documentation, inspection logs, and compliance reports."
-      ]
+      "title": "MERN Stack Developer",
+      "company": "Expertizo",
+      "location": "Karachi, Pakistan",
+      "period": "Jan 2025 - Present",
+      "type": "Full-Time",
+      "description": "Developing HR, crypto, and analytics dashboards using React, Next.js, Node.js, and Firebase with focus on UI/UX and performance."
     },
     {
-      "title": "Safety Assistant / Trainee",
-      "company": "Industrial Services & Construction Company",
+      "title": "MERN Stack Developer",
+      "company": "Decotechs",
       "location": "Karachi, Pakistan",
-      "period": "2018 - 2019",
-      "type": "Internship / Training",
-      "responsibilities": [
-        "Assisted senior officers in daily site safety inspections and audits.",
-        "Monitored PPE usage and promoted compliance with safety regulations.",
-        "Helped prepare risk assessment and incident investigation reports.",
-        "Supported safety awareness programs and workforce training initiatives.",
-        "Gained practical exposure to ISO 45001 and workplace safety documentation."
-      ]
+      "period": "2023 - 2024",
+      "type": "Full-Time",
+      "description": "Worked on multiple web apps using MongoDB, Express, React, and Node.js. Implemented complex UI modules and API integrations."
+    },
+    {
+      "title": "Frontend Developer",
+      "company": "Jamal Brothers",
+      "location": "Karachi, Pakistan",
+      "period": "2022 - 2023",
+      "type": "Internship",
+      "description": "Built responsive React.js and Next.js user interfaces while collaborating with backend teams and optimizing for SEO."
     }
   ]
 }

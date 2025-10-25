@@ -1,43 +1,43 @@
 {
   "title": "About Me",
-  "subtitle": "Passionate about creating safer workplaces through comprehensive safety management and training",
-  "mainTitle": "Professional Safety Officer",
-   "description": [
-        "Computer Science graduate with solid technical knowledge, using digital tools to improve safety and efficiency.",
-    "NEBOSH-certified Safety Officer with 5 years of experience in risk assessment, compliance, and safety program implementation.",
-    "Skilled in hazard identification, risk control, and promoting a strong safety culture."
+  "subtitle": "Full-stack developer crafting scalable apps with modern tech",
+  "mainTitle": "Professional Web Developer",
+  "description": [
+    "MERN stack developer with a passion for building fast, responsive, and secure web applications.",
+    "Proficient in React, Next.js, and Node.js — with a focus on UI performance and clean code.",
+    "Skilled in integrating APIs, managing Firebase, and delivering end-to-end digital products."
   ],
-  "workImage": "/about-us-1.png",
+  "workImage": "/about-friend.png",
   "skills": [
-    "NEBOSH IGC",
-    "First Aid",
-    "Fire Safety",
-    "Risk Assessment",
-    "Work at Height",
-    "Safety Training",
-    "Incident Investigation",
-    "Safety Auditing"
+    "React.js",
+    "Next.js",
+    "Node.js",
+    "Firebase",
+    "MongoDB",
+    "Tailwind CSS",
+    "TypeScript",
+    "GitHub Actions"
   ],
   "highlights": [
     {
-      "icon": "Shield",
-      "title": "2+ Years Experience",
-      "description": "Professional safety officer experience"
-    },
-    {
       "icon": "Award",
-      "title": "NEBOSH Certified",
-      "description": "International safety qualification"
+      "title": "5+ Completed Projects",
+      "description": "Delivered production-ready web apps"
     },
     {
       "icon": "Users",
-      "title": "Team Safety Training",
-      "description": "Conducted safety training for 100+ employees"
+      "title": "Client Collaboration",
+      "description": "Worked with cross-functional teams"
     },
     {
       "icon": "CheckCircle",
-      "title": "Zero Incidents",
-      "description": "Maintained excellent safety record"
+      "title": "Full Stack Expertise",
+      "description": "Frontend + Backend Integration"
+    },
+    {
+      "icon": "Shield",
+      "title": "Optimized & Secure",
+      "description": "Focus on performance and reliability"
     }
   ]
 }

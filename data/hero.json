@@ -1,12 +1,9 @@
 {
   "name": "Adnan Rafiq",
-  "title": "Safety Officer",
-  "subtitle": "NEBOSH Certified | First Aid | Fire Safety | Work at Height | Risk Assessment",
-  "description": "Dedicated safety professional with 5+ years of experience ensuring workplace safety and compliance.",
+  "title": "Full-Stack (MERN) Developer",
+  "subtitle": "React | Next.js | Node.js | Firebase | TypeScript | MongoDB",
+  "description": "Passionate MERN Stack Developer with 3 years of experience building scalable web apps and dashboards. Focused on clean UI, efficient APIs, and modern front-end architectures.",
   "profileImage": "/adnan2.png",
-  "iosh": "/iosh.png",
-  "nebosh": "/nebosh.png",
-  "osha": "/osha.png",
   "logo": "/logo-2.png",
   "buttons": [
     {

@@ -9,27 +9,25 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
-  Award,
-  Calendar,
-  Building,
+  Code2,
   Eye,
   ChevronLeft,
   ChevronRight,
+  ExternalLink,
 } from "lucide-react";
-import { CertificateModal } from "./certificate-modal";
-import certificatesData from "@/data/certificates.json";
+import projectsData from "@/data/projects.json";
+import {ProjectModal} from "./ProjectModal"
 
-export function CertificatesSection() {
-  const [selectedCertificate, setSelectedCertificate] = useState<any>(null);
+export function ProjectsSection() {
+  const [selectedProject, setSelectedProject] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [permission, setPermission] = useState(false); // ✅ control permission state
 
   const prevRef = useRef<HTMLButtonElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
   const [swiperReady, setSwiperReady] = useState(false);
 
-  const handleViewCertificate = (cert: any) => {
-    setSelectedCertificate(cert);
+  const handleViewDetails = (project: any) => {
+    setSelectedProject(project);
     setIsModalOpen(true);
   };
 
@@ -38,15 +36,15 @@ export function CertificatesSection() {
   }, []);
 
   return (
-    <section id="certificates" className="py-20 bg-background overflow-hidden relative">
+    <section id="projects" className="py-20 bg-background overflow-hidden relative">
       <div className="container lg:px-36 md:px-16 px-4 mx-auto">
         {/* Header */}
         <div className="text-center mb-10">
           <h2 className="font-serif text-[20px] md:text-[26px] font-bold text-foreground mb-4">
-            {certificatesData.title}
+            {projectsData.title}
           </h2>
           <p className="text-[12px] md:text-[14px] text-muted-foreground md:max-w-2xl px-8 mx-auto">
-            {certificatesData.subtitle}
+            {projectsData.subtitle}
           </p>
         </div>
 
@@ -58,7 +56,7 @@ export function CertificatesSection() {
             slidesPerView={1}
             loop={true}
             autoplay={{
-              delay: 3000,
+              delay: 3500,
               disableOnInteraction: false,
               pauseOnMouseEnter: true,
             }}
@@ -79,49 +77,51 @@ export function CertificatesSection() {
             }}
             className="pb-20"
           >
-            {certificatesData.certificates.map((cert, index) => (
+            {projectsData.projects.map((project, index) => (
               <SwiperSlide key={index}>
                 <Card className="min-w-[310px] my-1 group transition-all duration-500 relative overflow-hidden border-2 border-border/80 hover:border-primary/60 bg-muted/40 shadow-lg hover:shadow-xl">
                   <CardHeader className="pb-2">
                     <div className="flex items-start justify-between">
                       <div className="flex items-center">
                         <div className="p-2 bg-primary/10 rounded-lg mr-3 border border-primary/20">
-                          <Award className="h-5 w-5 text-primary" />
+                          <Code2 className="h-5 w-5 text-primary" />
                         </div>
                         <Badge variant="secondary" className="text-[12px] md:text-[14px]">
-                          {cert.category}
+                          {project.techname}
                         </Badge>
                       </div>
-                      <Badge
-                        variant={cert.status === "Active" ? "default" : "secondary"}
-                        className="text-xs"
-                      >
-                        {cert.status}
-                      </Badge>
                     </div>
                     <CardTitle className="md:text-[14px] text-[12px] font-semibold group-hover:text-primary">
-                      {cert.title}
+                      {project.proname}
                     </CardTitle>
                   </CardHeader>
+
                   <CardContent>
-                    <div className="space-y-1 mb-6 flex justify-between">
-                      <div className="flex items-center text-muted-foreground">
-                        <Building className="h-4 w-4 mr-2" />
-                        <span className="text-[12px]">{cert.issuingBody}</span>
-                      </div>
-                      <div className="flex items-center text-muted-foreground">
-                        <Calendar className="h-4 w-4 mr-2" />
-                        <span className="text-[12px]">Issued {cert.year}</span>
-                      </div>
+                    <img
+                      src={project.imag}
+                      alt={project.proname}
+                      className="w-full h-[160px] object-cover rounded-md mb-3"
+                    />
+                    <p className="text-[12px] text-muted-foreground line-clamp-3 mb-4">
+                      {project.discription}
+                    </p>
+                    <div className="flex gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-1/2 text-[12px] border-2 hover:bg-primary hover:text-white"
+                        onClick={() => handleViewDetails(project)}
+                      >
+                        <Eye className="h-4 w-4 mr-1" /> Details
+                      </Button>
+                      <Button
+                        size="sm"
+                        className="w-1/2 text-[12px] gap-2"
+                        onClick={() => window.open(project.link, "_blank")}
+                      >
+                        <ExternalLink className="h-4 w-4" /> Visit
+                      </Button>
                     </div>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full text-[12px] gap-2 border-2 border-border/80 hover:border-primary/60 hover:bg-primary hover:text-primary-foreground"
-                      onClick={() => handleViewCertificate(cert)}
-                    >
-                      <Eye className="h-4 w-4" /> View Certificate
-                    </Button>
                   </CardContent>
                 </Card>
               </SwiperSlide>
@@ -148,12 +148,11 @@ export function CertificatesSection() {
         </div>
       </div>
 
-      {/* ✅ Custom Modal */}
-      <CertificateModal
-        certificate={selectedCertificate}
+      {/* ✅ Project Details Modal */}
+      <ProjectModal
+        project={selectedProject}
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        permission={permission}
       />
     </section>
   );
