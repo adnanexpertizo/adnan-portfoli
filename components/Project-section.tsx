@@ -82,10 +82,11 @@ export function ProjectsSection() {
           </div>
         </div>
 
-        {/* MongoDB notice for personal projects */}
+        {/* Personal projects note */}
         {activeTab === "personal" && (
-          <div className="text-center text-[13px] md:text-[14px] text-muted-foreground bg-muted/40 border border-border rounded-lg py-2 px-4 mb-8 max-w-2xl mx-auto shadow-sm">
-            ⚠️ Some personal projects are quite old, so their MongoDB connections may be temporarily inactive due to inactivity on the free-tier database.
+          <div className="text-center text-[11px] md:text-[12px] md:text-start text-muted-foreground bg-muted/40 border border-border rounded-lg py-2 px-4 mb-8 max-w-2xl mx-auto shadow-sm space-y-2">
+            <p>🧠 These personal projects were created during my student life for learning and practice purposes. Now I have over 3 years of professional experience working on real-world projects.</p>
+            <p>⚠️ Some personal projects are quite old, so their MongoDB connections may be temporarily inactive due to inactivity on the free-tier database.</p>
           </div>
         )}
 
