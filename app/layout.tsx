@@ -27,10 +27,30 @@ const rubik = Rubik({
 })
 
 export const metadata: Metadata = {
-  title: "Adnan Rafiq - Safety Officer Portfolio",
+  title: "Adnan Rafiq's Portfolio",
   description:
-    "NEBOSH Certified Safety Officer | First Aid | Fire Safety | Work at Height | Risk Assessment",
+    "Adnan Rafiq's Portfolio - showcasing projects, skills, and experiences.",
+  keywords: ["Adnan", "portfolio", "web developer", "projects", "skills", "adnan's portfolio"],
+  robots: "index, follow",
+  openGraph: {
+    title: "Adnan Rafiq's Portfolio",
+    description: "Explore my work and projects in web development.",
+    url: "https://adnan-portfoli.vercel.app/",
+    type: "website",
+    images: [
+      {
+        url: "/images/fav-icon.png",
+        width: 1200,
+        height: 630,
+        alt: "Adnan Rafiq Portfolio Preview",
+      },
+    ],
+  },
+  icons: {
+    icon: "/profile-image.png",
+  },
   generator: "v0.app",
+  metadataBase: new URL("https://adnan-portfoli.vercel.app"),
 }
 
 export default function RootLayout({
