@@ -1,10 +1,11 @@
 {
   "name": "Adnan Rafiq",
   "title": "Full-Stack (MERN) Developer",
-  "subtitle": "React | Next.js | Node.js | Firebase | TypeScript | MongoDB",
+  "subtitle": "React | Next.js | Node.js | Firebase | TypeScript | MongoDB | LangChain",
   "description": "Passionate MERN Stack Developer with 3 years of experience building scalable web apps and dashboards. Focused on clean UI, efficient APIs, and modern front-end architectures.",
   "profileImage": "/profile.png",
   "logo": "/logo.png",
+  "cvLink": "/Mern-stack-developer-adnan-rafiq (2).pdf",
   "buttons": [
     {
       "text": "Download CV",

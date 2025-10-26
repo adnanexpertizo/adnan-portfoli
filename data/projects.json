@@ -4,56 +4,52 @@
   "personal": [
     {
       "id": 1,
-      
       "link": "https://hakthonpro.vercel.app/",
       "proname": "E-commerce Website",
       "techname": "Next.js, Redux",
-      "discription": "A responsive e-commerce web app where users can browse, search, and buy products seamlessly. Focused on UI performance and cart management."
+      "discription": "Developed a complete e-commerce web application during my learning phase, allowing users to browse products, view details, and manage their carts seamlessly. Implemented Redux for global state management to handle product data and user sessions efficiently. Focused on creating a responsive, performance-optimized user interface with dynamic routing, product filtering, and cart management. This project strengthened my understanding of scalable frontend structures, asynchronous data handling, and overall e-commerce workflows."
     },
     {
       "id": 2,
-    
       "link": "https://socailmediaapp.vercel.app/",
       "proname": "Social Media App",
       "techname": "React, Node.js, MongoDB",
-      "discription": "A complete social media platform supporting posts, likes, comments, and user authentication — built for practical full-stack learning."
+      "discription": "Built a complete social networking platform to explore full-stack development concepts. Integrated features such as post creation, likes, comments, and authentication. Users can connect, share updates, and interact in real time. Implemented RESTful APIs with Node.js and MongoDB for backend management and used React for dynamic UI rendering. The project improved my understanding of real-time communication, secure authentication, and the relationship between frontend and backend architectures."
     },
     {
       "id": 3,
-     
       "link": "https://photogalleryui.vercel.app/",
       "proname": "Photo Gallery",
       "techname": "MERN Stack",
-      "discription": "A photo management app where users can upload, organize, and manage visibility of images (public/private) securely."
+      "discription": "Created a photo gallery web application where users can upload, categorize, and manage their images privately or publicly. The project features a clean and responsive layout, efficient image rendering, and cloud-based data handling. Developed CRUD functionalities with MongoDB and Express, while using React for dynamic UI updates. This project enhanced my understanding of data storage strategies, user privacy handling, and performance optimization for media-heavy web applications."
     },
     {
       "id": 4,
-      
       "link": "https://fullauthrized-crud.vercel.app/",
       "proname": "Full Authorized CRUD",
       "techname": "Next.js, Express, MongoDB",
-      "discription": "A secure CRUD app with authentication and password recovery system using 6-digit OTP verification."
+      "discription": "Developed a fully functional CRUD application with complete authentication and authorization. Integrated a password recovery feature using secure 6-digit OTP verification via email. Users can register, log in, and manage data with role-based access controls. The backend handles secure API routes with JWT, and the frontend is built for smooth UX and validation. This project taught me advanced authentication flows and backend security principles, simulating real-world production-level systems."
     },
     {
       "id": 5,
       "link": "https://contact-list-bice-zeta.vercel.app/",
       "proname": "Contact List",
       "techname": "Next.js, Redux, Express",
-      "discription": "A simple app to add, edit, and manage contact details during my early learning phase."
+      "discription": "Developed a contact management system that enables users to add, edit, delete, and search contact details in an organized interface. Used Redux for efficient state management and Express for backend data handling. The system features responsive UI design and error handling for form validation. This project helped me build confidence in handling CRUD operations, state persistence, and UI performance optimization using modern React workflows."
     },
     {
       "id": 6,
       "link": "https://jobseekerfrontend.vercel.app",
       "proname": "Job Seeker",
       "techname": "MERN Stack",
-      "discription": "A platform connecting job seekers and employers with authentication and job posting/searching functionalities."
+      "discription": "Built a functional job portal that connects job seekers and employers, featuring authentication, job posting, and application tracking. Implemented search filters, profile management, and dynamic dashboards for both user types. Focused on scalability, secure login sessions, and responsive layouts. This project simulated a real-world HR recruitment environment and helped me practice structuring a multi-role system with clean database design and modular React components."
     },
     {
       "id": 7,
       "link": "https://adnanyousafzai21.github.io/Todo_List/",
       "proname": "ToDo List",
       "techname": "React, Express",
-      "discription": "A simple to-do app created to learn state management and CRUD basics during my early practice."
+      "discription": "Developed a simple yet interactive to-do application to master React fundamentals such as hooks, state management, and component-based architecture. Users can add, edit, mark as complete, and delete tasks with persistent state handling. Integrated Express for simple backend operations and deployed the app to practice deployment workflows. This foundational project laid the groundwork for understanding how frontend and backend logic interact in real applications."
     }
   ],
   "professional": [
@@ -61,7 +57,7 @@
       "id": 1,
       "proname": "Madrasa – Education Management Web App",
       "techname": "MERN Stack",
-      "discription": "Developed with a team to manage education institutions — featuring Admin, Teacher, and Student panels for classes, schedules, fees, chat, and more.",
+      "discription": "Worked with a team to develop Madrasa, an education management platform\n using the MERN stack. Built Admin, Teacher, and Student portals with pages for\n classes, departments, settings, notifications, chat, results, schedules, and fee\n management. Enabled students to check results, fees, class schedules, and levels,\n while teachers could view their classes, departments, and student lists.\n Collaborated on creating clean, responsive interfaces and managing all user\n activities within the admin panel",
       "link": "restricted",
       "organization": "Decotechs"
     },
@@ -69,7 +65,7 @@
       "id": 2,
       "proname": "Time Tracking Application with Real-Time Data",
       "techname": "React, Electron, Firebase",
-      "discription": "Built a real-time productivity tracking system with screenshot capture, session management, and location tracking.",
+      "discription": "Developed a robust time tracking application using React, Electron, and Firebase,\n enabling real-time session management, automated screenshot capture, and\n geolocation tracking. Implemented asynchronous data handling and database\n operations to ensure seamless day-to-day transitions and accurate time logging\n for enhanced productivity monitoring",
       "link": "restricted",
       "organization": "Decotechs"
     },
@@ -77,7 +73,7 @@
       "id": 3,
       "proname": "Pertime – HR and Organization Management",
       "techname": "MERN Stack",
-      "discription": "Built admin & employee dashboards, handling attendance, leave, reports, and payroll integration for HR teams.",
+      "discription": "Independently developed PERTIME, an HR and organization management web app\n with Admin and User dashboards. Designed and built pages for employees, leave,\n reports, complaints, and settings. Ensured clean, responsive UI and smooth user\n flows across the platform. Collaborated on integrating the payroll module within\n the system.",
       "link": "restricted",
       "organization": "Expertizo"
     },
@@ -85,7 +81,7 @@
       "id": 4,
       "proname": "Crypto Platform Frontend Development",
       "techname": "Next.js, Blockchain APIs",
-      "discription": "Worked on crypto dashboards, wallet integrations, and blockchain-based data visualization for secure transactions.",
+      "discription": "Worked with a blockchain team as a Frontend Developer, building responsive\n crypto websites and dashboards. Integrated wallet connections, blockchain APIs,\n and real-time data displays, ensuring secure and smooth user experiences.",
       "link": "restricted",
       "organization": "Expertizo"
     },

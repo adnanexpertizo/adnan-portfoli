@@ -85,8 +85,26 @@ export function ProjectsSection() {
         {/* Personal projects note */}
         {activeTab === "personal" && (
           <div className="text-center text-[11px] md:text-[12px] md:text-start text-muted-foreground bg-muted/40 border border-border rounded-lg py-2 px-4 mb-8 max-w-2xl mx-auto shadow-sm space-y-2">
-            <p>🧠 These personal projects were created during my student life for learning and practice purposes. Now I have over 3 years of professional experience working on real-world projects.</p>
-            <p>⚠️ Some personal projects are quite old, so their MongoDB connections may be temporarily inactive due to inactivity on the free-tier database.</p>
+            <p>
+              🧠 These personal projects were created during my student life for learning and
+              practice purposes. Now I have over 3 years of professional experience working on
+              real-world projects.
+            </p>
+            <p>
+              ⚠️ Some personal projects are quite old, so their MongoDB connections may be
+              temporarily inactive due to inactivity on the free-tier database.
+            </p>
+          </div>
+        )}
+
+        {/* Professional projects note */}
+        {activeTab === "professional" && (
+          <div className="text-center text-[11px] md:text-[12px] md:text-start text-muted-foreground bg-muted/40 border border-border rounded-lg py-2 px-4 mb-8 max-w-2xl mx-auto shadow-sm space-y-2">
+            <p>
+              🔒 Some client or organization projects cannot be shared publicly in my portfolio
+              due to confidentiality and ownership rights. However, these can be discussed and
+              demonstrated privately during interviews upon request.
+            </p>
           </div>
         )}
 
@@ -121,9 +139,11 @@ export function ProjectsSection() {
           >
             {projects.map((project, index) => (
               <SwiperSlide key={index}>
-                <Card lassName={`absolute top-3 right-3 bg-primary text-white text-[11px] font-semibold rounded-full w-[36px] flex items-center justify-center shadow-md ${
-               project.imag ? "h-[120px]" : "h-[50px]"}`}>
-                  <div className={`absolute top-3 right-3 bg-primary text-white text-[11px] font-semibold rounded-full w-[36px] h-${project.imag?'[120px]':'50px'} flex items-center justify-center shadow-md`}>
+                <Card
+                  className={`group relative border-2 border-border/70 hover:border-primary/70 transition-all bg-muted/40 shadow-lg hover:shadow-xl overflow-hidden h-[380px] flex flex-col justify-between`}
+                >
+                  {/* Number badge */}
+                  <div className="absolute top-3 right-3 bg-primary text-white text-[11px] font-semibold rounded-full w-[36px] h-[36px] flex items-center justify-center shadow-md">
                     {index + 1}/{projects.length}
                   </div>
 
@@ -164,7 +184,7 @@ export function ProjectsSection() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="md:md:w-[150px] w-[110px] text-[12px] border-2 rounded-lg hover:bg-primary hover:text-white h-[30px] md:h-[40px]"
+                        className="md:w-[150px] w-[110px] text-[12px] border-2 rounded-lg hover:bg-primary hover:text-white h-[30px] md:h-[40px]"
                         onClick={() => handleViewDetails(project)}
                       >
                         <Eye className="h-4 w-4 mr-1" /> Details

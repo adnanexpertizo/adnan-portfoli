@@ -65,7 +65,7 @@ export function AskModal({ openModal, setOpenModal }: AskModalProps) {
                          text-muted-foreground text-sm pointer-events-none 
                          typing-placeholder"
               >
-                Ask Adnan anything...
+                Ask Adnan about anything...
               </span>
             )}
           </div>
