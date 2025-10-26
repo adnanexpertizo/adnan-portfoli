@@ -140,7 +140,7 @@ export function ProjectsSection() {
             {projects.map((project, index) => (
               <SwiperSlide key={index}>
                 <Card
-                  className={`group relative border-2 border-border/70 hover:border-primary/70 transition-all bg-muted/40 shadow-lg hover:shadow-xl overflow-hidden h-[380px] flex flex-col justify-between`}
+                  className={`group relative my-5 border-2 border-border/70 hover:border-primary/70 transition-all bg-muted/40 shadow-lg hover:shadow-xl overflow-hidden h-[280px] flex flex-col justify-between`}
                 >
                   {/* Number badge */}
                   <div className="absolute top-3 right-3 bg-primary text-white text-[11px] font-semibold rounded-full w-[36px] h-[36px] flex items-center justify-center shadow-md">
