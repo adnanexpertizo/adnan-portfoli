@@ -177,7 +177,7 @@ export function HeroSection() {
           {/* Music Button */}
           <button
             onClick={toggleMusic}
-            className="fixed bottom-5 left-4 md:left-5 z-40 bg-primary text-white md:p-3 p-2 rounded-full shadow-lg hover:scale-105 transition-transform"
+            className="fixed bottom-5 left-4 cursor-pointer md:left-5 z-40 bg-primary text-white md:p-3 p-2 rounded-full shadow-lg hover:scale-105 transition-transform"
             aria-label="Toggle background music"
           >
             {isPlaying ? (
@@ -190,7 +190,7 @@ export function HeroSection() {
           {/* ✅ WhatsApp Button (with structured message) */}
           <button
             onClick={handleWhatsAppClick}
-            className="fixed bottom-5 right-4 md:right-5 z-40 bg-green-500 text-white md:p-3 p-2 rounded-full shadow-lg hover:bg-green-600 hover:scale-105 transition-transform"
+            className="fixed bottom-5 right-4 cursor-pointer md:right-5 z-40 bg-green-500 text-white md:p-3 p-2 rounded-full shadow-lg hover:bg-green-600 hover:scale-105 transition-transform"
             aria-label="Chat on WhatsApp"
           >
             <FaWhatsapp className="md:w-6 md:h-6 w-5 h-5" />

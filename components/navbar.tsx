@@ -23,7 +23,7 @@ export function Navbar() {
     { href: "#home", label: "Home" },
     { href: "#about", label: "About" },
     { href: "#education", label: "Education" },
-    { href: "#certificates", label: "Certificates" },
+    { href: "#projects", label: "Projects" },
     { href: "#experience", label: "Experience" },
     { href: "#contact", label: "Contact" },
   ];
@@ -54,7 +54,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-20 sm:h-16">
           {/* Logo */}
           <div className="font-serif font-bold text-lg sm:text-xl text-primary hover:text-primary/80 transition-colors duration-300 cursor-pointer">
-            <div className="relative md:w-52 md:h-12 w-28 h-8">
+            <div className="relative md:w-42 md:h-10 w-24 h-6">
               <Image src={heroData.logo} alt="Logo" layout="fill" />
             </div>
           </div>
@@ -65,10 +65,10 @@ export function Navbar() {
               <button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className="text-foreground hover:text-primary transition-all duration-300 font-medium relative group text-sm lg:text-base"
+                className="text-foreground hover:text-primary transition-all duration-300 font-medium relative group text-sm lg:text-base cursor-pointer"
               >
                 {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full "></span>
               </button>
             ))}
             <div className="ml-4">

@@ -21,15 +21,15 @@ export function AboutSection() {
   };
 
   const typedText = useTypewriter(
-    [
-      " an experienced Safety Officer",
-      " graduated in Computer Science",
-      " NEBOSH Certified",
-      " IOSH & OSHA Certified",
-      " First Aid, Fire Safety, Work at Height Certified",
-    ],
-    100
-  );
+  [
+    "a MERN Stack Developer",
+    "a BSCS Graduate",
+    "having 3+ years of experience",
+    "skilled in React.js, Next.js & Node.js",
+    "passionate about AI & modern web technologies",
+  ],
+  100
+);
 
   useEffect(() => {
     setIsVisible(true);

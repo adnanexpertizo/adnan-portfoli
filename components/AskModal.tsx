@@ -73,7 +73,7 @@ export function AskModal({ openModal, setOpenModal }: AskModalProps) {
 
         <button
           onClick={handleSend}
-          className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full 
+          className="absolute right-2 cursor-pointer top-1/2 -translate-y-1/2 p-2 rounded-full 
                bg-primary text-primary-foreground hover:bg-primary/90 
                transition transform hover:scale-105"
           aria-label="Send"

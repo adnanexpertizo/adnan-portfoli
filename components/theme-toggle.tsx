@@ -28,7 +28,7 @@ const ThemeToggle = () => {
       onClick={toggleTheme}
     >
       <div className="md:w-16 md:h-8 w-14 h-7 bg-muted border-2 border-border rounded-full flex items-center p-[2px] transition-all duration-300 ease-out group-hover:shadow-md group-hover:border-primary/30 relative overflow-hidden">
-        {/* Sun Icon */}
+
         <Sun
           className={`md:w-4 md:h-4 w-3 h-3 relative z-30 ml-1 transition-all duration-300 ${
             theme === "dark"
