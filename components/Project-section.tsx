@@ -147,24 +147,31 @@ export function ProjectsSection() {
                     {index + 1}/{projects.length}
                   </div>
 
-                  <CardHeader className="pb-2">
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center">
-                        <div className="p-2 bg-primary/10 rounded-lg mr-3 border border-primary/20">
-                          <Code2 className="h-5 w-5 text-primary" />
-                        </div>
-                        <Badge
-                          variant="secondary"
-                          className="text-[12px] md:text-[13px]"
-                        >
-                          {project.techname}
-                        </Badge>
-                      </div>
-                    </div>
-                    <CardTitle className="md:text-[14px] text-[12px] font-semibold group-hover:text-primary mt-2">
-                      {project.proname}
-                    </CardTitle>
-                  </CardHeader>
+<CardHeader className="pb-2">
+  <div className="flex items-start justify-between">
+    <div className="flex items-center">
+      <div className="p-2 bg-primary/10 rounded-lg mr-3 border border-primary/20">
+        <Code2 className="h-5 w-5 text-primary" />
+      </div>
+      <Badge
+        variant="secondary"
+        className="text-[12px] md:text-[13px]"
+      >
+        {project.techname}
+      </Badge>
+    </div>
+  </div>
+  <div className="flex justify-between items-center mt-3">
+    <CardTitle title={project.proname} className="md:text-[14px] text-[12px] font-semibold group-hover:text-primary mt-2">
+        {`${project.proname.slice(0,30)} ${ project.proname.length > 30 && "..."}`}
+    </CardTitle>
+ 
+   <CardTitle className="md:text-[12px] text-[10px] font-semibold group-hover:text-primary mt-2">
+   Created: {project.year}
+    </CardTitle>
+     </div>
+  
+</CardHeader>
 
                   <CardContent className="flex flex-col justify-between flex-1">
                     {/* Conditional Image */}

@@ -4,6 +4,7 @@
   "personal": [
     {
       "id": 1,
+      "year": 2020,
       "link": "https://hakthonpro.vercel.app/",
       "proname": "E-commerce Website",
       "techname": "Next.js, Redux",
@@ -11,6 +12,7 @@
     },
     {
       "id": 2,
+      "year": 2020,
       "link": "https://socailmediaapp.vercel.app/",
       "proname": "Social Media App",
       "techname": "React, Node.js, MongoDB",
@@ -18,6 +20,7 @@
     },
     {
       "id": 3,
+      "year": 2021,
       "link": "https://quizapp-ruby-three.vercel.app/",
       "proname": "Quiz Application",
       "techname": "React, TypeScript",
@@ -25,6 +28,7 @@
     },
     {
       "id": 4,
+      "year": 2021,
       "link": "https://photogalleryui.vercel.app/",
       "proname": "Photo Gallery",
       "techname": "MERN Stack",
@@ -32,6 +36,7 @@
     },
     {
       "id": 5,
+      "year": 2020,
       "link": "https://fullauthrized-crud.vercel.app/",
       "proname": "Full Authorized CRUD",
       "techname": "Next.js, Express, MongoDB",
@@ -39,6 +44,7 @@
     },
     {
       "id": 6,
+      "year": 2021,
       "link": "https://contact-list-bice-zeta.vercel.app/",
       "proname": "Contact List",
       "techname": "Next.js, Redux, Express",
@@ -46,6 +52,7 @@
     },
     {
       "id": 7,
+      "year": 2021,
       "link": "https://jobseekerfrontend.vercel.app",
       "proname": "Job Seeker",
       "techname": "MERN Stack",
@@ -53,6 +60,7 @@
     },
     {
       "id": 8,
+      "year": 2020,
       "link": "https://adnanyousafzai21.github.io/Todo_List/",
       "proname": "ToDo List",
       "techname": "React, Express",
@@ -62,38 +70,43 @@
   "professional": [
     {
       "id": 1,
+      "year": 2022,
       "proname": "Madrasa – Education Management Web App",
       "techname": "MERN Stack",
-      "discription": "Worked with a team to develop Madrasa, an education management platform\n using the MERN stack. Built Admin, Teacher, and Student portals with pages for\n classes, departments, settings, notifications, chat, results, schedules, and fee\n management. Enabled students to check results, fees, class schedules, and levels,\n while teachers could view their classes, departments, and student lists.\n Collaborated on creating clean, responsive interfaces and managing all user\n activities within the admin panel",
+      "discription": "Worked with a team to develop Madrasa, an education management platform using the MERN stack. Built Admin, Teacher, and Student portals with pages for classes, departments, settings, notifications, chat, results, schedules, and fee management.",
       "link": "restricted",
       "organization": "Decotechs"
     },
     {
       "id": 2,
+      "year": 2023,
       "proname": "Time Tracking Application with Real-Time Data",
       "techname": "React, Electron, Firebase",
-      "discription": "Developed a robust time tracking application using React, Electron, and Firebase,\n enabling real-time session management, automated screenshot capture, and\n geolocation tracking. Implemented asynchronous data handling and database\n operations to ensure seamless day-to-day transitions and accurate time logging\n for enhanced productivity monitoring",
+      "discription": "Developed a robust time tracking application using React, Electron, and Firebase, enabling real-time session management, automated screenshot capture, and geolocation tracking.",
       "link": "restricted",
       "organization": "Decotechs"
     },
     {
       "id": 3,
+      "year": 2023,
       "proname": "Pertime – HR and Organization Management",
       "techname": "MERN Stack",
-      "discription": "Independently developed PERTIME, an HR and organization management web app\n with Admin and User dashboards. Designed and built pages for employees, leave,\n reports, complaints, and settings. Ensured clean, responsive UI and smooth user\n flows across the platform. Collaborated on integrating the payroll module within\n the system.",
+      "discription": "Independently developed PERTIME, an HR and organization management web app with Admin and User dashboards. Designed and built pages for employees, leave, reports, complaints, and settings.",
       "link": "restricted",
       "organization": "Expertizo"
     },
     {
       "id": 4,
+      "year": 2024,
       "proname": "Crypto Platform Frontend Development",
       "techname": "Next.js, Blockchain APIs",
-      "discription": "Worked with a blockchain team as a Frontend Developer, building responsive\n crypto websites and dashboards. Integrated wallet connections, blockchain APIs,\n and real-time data displays, ensuring secure and smooth user experiences.",
+      "discription": "Worked with a blockchain team as a Frontend Developer, building responsive crypto websites and dashboards. Integrated wallet connections, blockchain APIs, and real-time data displays.",
       "link": "restricted",
       "organization": "Expertizo"
     },
     {
       "id": 5,
+      "year": 2025,
       "proname": "Chat Support Application",
       "techname": "React, Firebase",
       "discription": "Developed a real-time chat and customer support web application for internal organization use.",
