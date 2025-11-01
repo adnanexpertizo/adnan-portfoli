@@ -155,7 +155,8 @@ export function HeroSection() {
 
           {/* RIGHT SECTION */}
           <div className="flex justify-center md:justify-end order-1 lg:order-2 w-full lg:w-[30%]">
-            <div className="w-56 h-56 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-primary/20 shadow-xl relative">
+            {/* <div className="w-56 h-56 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-primary/20 shadow-xl relative"> */}
+            <div className="w-56 h-56 lg:w-80 lg:h-80 relative">
               <Image
                 src={heroData.profileImage || "/placeholder.svg"}
                 alt={`${heroData.name} - ${heroData.title}`}

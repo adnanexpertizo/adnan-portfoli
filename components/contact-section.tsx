@@ -14,31 +14,9 @@ import {
 } from "react-icons/fa";
 
 export function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-
   const [showNumber, setShowNumber] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-    setFormData({ name: "", email: "", subject: "", message: "" });
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  // ✅ WhatsApp logic (mobile + desktop support)
+  // WhatsApp logic
   const handleWhatsAppClick = () => {
     const phoneNumber = "923077522229";
     const message = encodeURIComponent(
@@ -188,7 +166,7 @@ export function ContactSection() {
             </div>
           </div>
 
-          {/* Right Side: Contact Form */}
+          {/* Right Side: Contact Form (Formspree setup used) */}
           <Card className="border-2 border-border/60 dark:border-border/80 shadow-lg bg-muted/40 backdrop-blur-sm">
             <CardHeader>
               <CardTitle className="font-serif text-[16px] md:text-xl">
@@ -196,42 +174,39 @@ export function ContactSection() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form
+                action="https://formspree.io/f/xgeqogka"
+                method="POST"
+                autoComplete="off"
+                className="space-y-6"
+              >
                 <Input
-                  name="name"
                   type="text"
+                  name="fullname"
                   placeholder="Your Name"
-                  value={formData.name}
-                  onChange={handleChange}
                   required
-                  className="border-2 border-border/60 bg-background"
+                  className="border-2 border-border/60 bg-background focus:outline-none focus:ring-0 focus:border-primary/60"
                 />
                 <Input
-                  name="email"
                   type="email"
+                  name="email"
                   placeholder="Your Email"
-                  value={formData.email}
-                  onChange={handleChange}
                   required
-                  className="border-2 border-border/60 bg-background"
+                  className="border-2 border-border/60 bg-background focus:outline-none focus:ring-0 focus:border-primary/60"
                 />
                 <Input
-                  name="subject"
                   type="text"
+                  name="subject"
                   placeholder="Subject"
-                  value={formData.subject}
-                  onChange={handleChange}
                   required
-                  className="border-2 border-border/60 bg-background"
+                  className="border-2 border-border/60 bg-background focus:outline-none focus:ring-0 focus:border-primary/60"
                 />
                 <Textarea
                   name="message"
-                  placeholder="Your Message"
                   rows={5}
-                  value={formData.message}
-                  onChange={handleChange}
+                  placeholder="Your Message"
                   required
-                  className="border-2 border-border/60 bg-background"
+                  className="border-2 border-border/60 bg-background focus:outline-none focus:ring-0 focus:border-primary/60"
                 />
                 <Button
                   type="submit"

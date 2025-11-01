@@ -18,34 +18,41 @@
     },
     {
       "id": 3,
+      "link": "https://quizapp-ruby-three.vercel.app/",
+      "proname": "Quiz Application",
+      "techname": "React, TypeScript",
+      "discription": "Developed an interactive quiz application to enhance my understanding of React hooks and TypeScript. Users can select categories, attempt timed quizzes, and view their scores upon completion. Focused on reusable components, state management, and conditional rendering to create a dynamic user experience. This project helped me strengthen my TypeScript fundamentals, component reusability, and user interaction handling in modern frontend development."
+    },
+    {
+      "id": 4,
       "link": "https://photogalleryui.vercel.app/",
       "proname": "Photo Gallery",
       "techname": "MERN Stack",
       "discription": "Created a photo gallery web application where users can upload, categorize, and manage their images privately or publicly. The project features a clean and responsive layout, efficient image rendering, and cloud-based data handling. Developed CRUD functionalities with MongoDB and Express, while using React for dynamic UI updates. This project enhanced my understanding of data storage strategies, user privacy handling, and performance optimization for media-heavy web applications."
     },
     {
-      "id": 4,
+      "id": 5,
       "link": "https://fullauthrized-crud.vercel.app/",
       "proname": "Full Authorized CRUD",
       "techname": "Next.js, Express, MongoDB",
       "discription": "Developed a fully functional CRUD application with complete authentication and authorization. Integrated a password recovery feature using secure 6-digit OTP verification via email. Users can register, log in, and manage data with role-based access controls. The backend handles secure API routes with JWT, and the frontend is built for smooth UX and validation. This project taught me advanced authentication flows and backend security principles, simulating real-world production-level systems."
     },
     {
-      "id": 5,
+      "id": 6,
       "link": "https://contact-list-bice-zeta.vercel.app/",
       "proname": "Contact List",
       "techname": "Next.js, Redux, Express",
       "discription": "Developed a contact management system that enables users to add, edit, delete, and search contact details in an organized interface. Used Redux for efficient state management and Express for backend data handling. The system features responsive UI design and error handling for form validation. This project helped me build confidence in handling CRUD operations, state persistence, and UI performance optimization using modern React workflows."
     },
     {
-      "id": 6,
+      "id": 7,
       "link": "https://jobseekerfrontend.vercel.app",
       "proname": "Job Seeker",
       "techname": "MERN Stack",
       "discription": "Built a functional job portal that connects job seekers and employers, featuring authentication, job posting, and application tracking. Implemented search filters, profile management, and dynamic dashboards for both user types. Focused on scalability, secure login sessions, and responsive layouts. This project simulated a real-world HR recruitment environment and helped me practice structuring a multi-role system with clean database design and modular React components."
     },
     {
-      "id": 7,
+      "id": 8,
       "link": "https://adnanyousafzai21.github.io/Todo_List/",
       "proname": "ToDo List",
       "techname": "React, Express",
