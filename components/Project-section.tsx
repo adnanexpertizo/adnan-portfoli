@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
+import Image from "next/image";
 import "swiper/css/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -44,8 +45,20 @@ export function ProjectsSection() {
     text.length > limit ? text.slice(0, limit) + "..." : text;
 
   return (
-    <section id="projects" className="py-20 bg-background relative">
-      <div className="container lg:px-36 md:px-16 px-4 mx-auto">
+    <section id="projects" 
+     className="bg-background mx-auto relative overflow-hidden"
+    >
+      <div className="absolute w-full h-full lg:h-full z-5">
+        <div className="relative w-full h-full lg:h-full">
+          <Image
+            src="/Background Noise.svg"
+            alt="a;t"
+            fill
+            className="object-cover w-full h-full hover:scale-105 transition-transform duration-500 ease-out"
+          />
+        </div>
+      </div>
+      <div className="container relative z-7 py-20 lg:px-36 md:px-16 px-4 mx-auto">
         {/* Header */}
         <div className="text-center mb-10">
           <h2 className="font-serif text-[22px] md:text-[26px] font-bold mb-3">
@@ -191,7 +204,7 @@ export function ProjectsSection() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="md:w-[150px] w-[110px] text-[12px] border-2 rounded-lg hover:bg-primary hover:text-white h-[30px] md:h-[40px]"
+                        className="md:w-[150px] w-[110px] cursore-pointer text-[12px] border-2 rounded-lg hover:bg-primary hover:text-white h-[30px] md:h-[40px]"
                         onClick={() => handleViewDetails(project)}
                       >
                         <Eye className="h-4 w-4 mr-1" /> Details

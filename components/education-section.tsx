@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import Image from "next/image";
 
 export function EducationSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -42,9 +43,19 @@ export function EducationSection() {
     <section
       ref={sectionRef}
       id="education"
-      className="py-20 overflow-hidden bg-background relative"
+     className="bg-background mx-auto relative overflow-hidden"
     >
-      <div className="container lg:px-36 md:px-16 px-4 mx-auto relative">
+      <div className="absolute w-full h-full lg:h-full z-5">
+        <div className="relative w-full h-full lg:h-full">
+          <Image
+            src="/Background Noise.svg"
+            alt="a;t"
+            fill
+            className="object-cover w-full h-full hover:scale-105 transition-transform duration-500 ease-out"
+          />
+        </div>
+      </div>
+      <div className="container relative z-7 py-20 lg:px-36 md:px-16 px-4 mx-auto relative">
         {/* Header */}
         <div className="text-center mb-10">
           <h2

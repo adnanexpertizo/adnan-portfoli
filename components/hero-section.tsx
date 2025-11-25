@@ -106,9 +106,20 @@ export function HeroSection() {
   return (
     <section
       id="home"
-      className="md:pt-40 min-h-[90vh] pt-24 md:pb-20 pb-12 md:px-36 px-4 flex items-center justify-center flex-wrap bg-background mx-auto relative"
+      className="bg-background mx-auto relative overflow-hidden"
     >
-      <div className="container px-2 mx-auto">
+      <div className="absolute w-full h-full lg:h-[700px] z-5">
+        <div className="relative w-full h-full lg:h-[700px]">
+          <Image
+            src="/Background Noise.svg"
+            alt="a;t"
+            fill
+            className="object-cover w-full h-full hover:scale-105 transition-transform duration-500 ease-out"
+          />
+        </div>
+      </div>
+      <div className="relative z-7 md:pt-40 min-h-[85vh] pt-24 md:pb-20 pb-12 md:px-36 px-4 flex items-center justify-center flex-wrap ">
+      {/* <div className="container px-2 relative z-10 mx-auto"> */}
         <div className="flex flex-wrap items-center justify-between gap-8 md:gap-[42px] lg:gap-[60px]">
           {/* LEFT SECTION */}
           <div className="w-full lg:w-[60%] flex flex-col items-center lg:items-start text-center lg:text-left order-2 lg:order-1 px-1">
