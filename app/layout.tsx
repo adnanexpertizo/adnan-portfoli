@@ -2,7 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
-import { Source_Sans_3, Playfair_Display, Rubik } from "next/font/google"
+import { Source_Sans_3, Playfair_Display } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { Suspense } from "react"
@@ -19,12 +19,7 @@ const playfairDisplay = Playfair_Display({
   variable: "--font-playfair",
 })
 
-const rubik = Rubik({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-rubik",
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-})
+
 
 export const metadata: Metadata = {
   title: "Adnan Rafiq's Portfolio",
@@ -62,7 +57,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${sourceSans.variable} ${playfairDisplay.variable} ${rubik.variable}`}
+        className={`font-sans ${GeistSans.variable} ${GeistMono.variable} ${sourceSans.variable} ${playfairDisplay.variable} `}
       >
         <Suspense fallback={null}>{children}</Suspense>
         <Analytics />
