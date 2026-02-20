@@ -7,7 +7,8 @@
     "Proficient in React, Next.js, and Node.js — with a focus on UI performance and clean code.",
     "Skilled in integrating APIs, managing Firebase, and delivering end-to-end digital products."
   ],
-  "workImage": "/about-us-img.png",
+  "workVideo": "https://res.cloudinary.com/dpvsay7rw/video/upload/v1771601574/Adnan_Rafiq_-_MERN_Stack_Portfolio_Intro_1_ylokny.mp4",
+  "workPoster": "https://res.cloudinary.com/dpvsay7rw/video/upload/v1771601574/so_2/Adnan_Rafiq_-_MERN_Stack_Portfolio_Intro_1_ylokny.jpg",
   "skills": [
     "React.js",
     "Next.js",
