@@ -139,7 +139,7 @@ export function AboutSection() {
                   loop
                   playsInline
                   preload="metadata"
-                  controls                   // ← Add this line (or remove comment)
+                  controls       
                   width={600}
                   height={600}
                   className="w-full h-[250px] md:h-[330px] object-cover transition-transform duration-700 ease-out"
