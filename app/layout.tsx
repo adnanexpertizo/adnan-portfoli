@@ -25,7 +25,7 @@ const rubik = Rubik({
   variable: "--font-rubik",
   weight: ["300", "400", "500", "600", "700", "800", "900"],
 })
-
+console.log("...........")
 export const metadata: Metadata = {
   title: "Adnan Rafiq's Portfolio",
   description:
