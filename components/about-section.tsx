@@ -22,7 +22,7 @@ export function AboutSection() {
     Users,
     CheckCircle,
   };
-
+console.log("About data loaded:", aboutData);
   const typedText = useTypewriter(
     [
       "a MERN Stack Developer",
@@ -33,7 +33,6 @@ export function AboutSection() {
     ],
     100
   );
-  console.log("............")
 
   useEffect(() => {
     setIsVisible(true);
