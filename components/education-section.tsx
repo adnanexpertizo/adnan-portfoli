@@ -1,40 +1,31 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { GraduationCap, Calendar, MapPin } from "lucide-react";
-import educationData from "@/data/education.json";
 import { useEffect, useRef, useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { GraduationCap, Calendar, MapPin, ChevronLeft, ChevronRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import educationData from "@/data/education.json";
 import Image from "next/image";
 
 export function EducationSection() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [visibleCards, setVisibleCards] = useState<boolean[]>([]);
+  const [swiperReady, setSwiperReady] = useState(false);
+  const [isVisible,   setIsVisible]   = useState(false);
+
   const sectionRef = useRef<HTMLElement>(null);
+  const prevRef    = useRef<HTMLButtonElement | null>(null);
+  const nextRef    = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => { setSwiperReady(true); }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          educationData.education.forEach((_, index) => {
-            setTimeout(() => {
-              setVisibleCards((prev) => {
-                const newVisible = [...prev];
-                newVisible[index] = true;
-                return newVisible;
-              });
-            }, index * 200);
-          });
-        }
-      },
+      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
       { threshold: 0.1 }
     );
-
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
@@ -43,125 +34,179 @@ export function EducationSection() {
     <section
       ref={sectionRef}
       id="education"
-     className="bg-background mx-auto relative overflow-hidden"
+      className="relative z-0 bg-background overflow-hidden"
     >
-      <div className="absolute w-full h-full lg:h-full z-5">
-        <div className="relative w-full h-full lg:h-full">
-          <Image
-            src="/Background Noise.svg"
-            alt="a;t"
-            fill
-            className="object-cover w-full h-full hover:scale-105 transition-transform duration-500 ease-out"
-          />
-        </div>
+      {/* Background texture */}
+      <div className="absolute inset-0 z-[1] pointer-events-none">
+        <Image
+          src="/Background Noise.svg"
+          alt=""
+          fill
+          className="object-cover opacity-60"
+          priority
+        />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_70%_40%,var(--color-primary)_0%,transparent_70%)] opacity-[0.07] dark:opacity-[0.12]" />
       </div>
-      <div className="container relative z-7 py-20 lg:px-36 md:px-16 px-4 mx-auto relative">
-        {/* Header */}
-        <div className="text-center mb-10">
-          <h2
-            className={`font-serif text-[20px] md:text-[26px] font-bold text-foreground mb-4 transform transition-all duration-1000 ease-out ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-8 opacity-0"
-            }`}
-          >
+
+      {/* Glow blob */}
+      <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-primary/5 blur-3xl pointer-events-none translate-y-1/3 -translate-x-1/4" />
+
+      <div className="relative z-10 max-w-7xl mx-auto py-16 md:py-20 px-4 sm:px-8 lg:px-16">
+
+        {/* ── Section Header ── */}
+        <div
+          className={`text-center mb-12 transition-all duration-700 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+          }`}
+        >
+          <span className="inline-block text-xs font-semibold text-primary uppercase tracking-widest mb-3">
+            Academic Background
+          </span>
+          <h2 className="font-serif text-xl sm:text-2xl lg:text-3xl font-bold text-foreground mb-4">
             {educationData.title}
           </h2>
-          <p
-            className={`text-[12px] md:text-[14px] text-muted-foreground md:max-w-2xl mx-auto text-pretty transform transition-all duration-1000 ease-out ${
-              isVisible
-                ? "translate-y-0 opacity-100"
-                : "translate-y-8 opacity-0"
-            }`}
-            style={{ transitionDelay: "200ms" }}
-          >
+          <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4">
             {educationData.subtitle}
           </p>
+          <div className="w-12 h-1 bg-primary rounded-full mx-auto mt-5" />
         </div>
 
-        {/* Swiper Section */}
-        <Swiper
-          modules={[Navigation, Autoplay]}
-          loop={true}
-          autoplay={{
-            delay: 4000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-          }}
-          spaceBetween={24}
-          breakpoints={{
-            0: { slidesPerView: 1, spaceBetween: 16 },
-            1100: { slidesPerView: 2, spaceBetween: 24 },
-          }}
-          className="my-10"
-        >
-          {educationData.education.map((edu, index) => (
-            <SwiperSlide key={index} className="flex">
-              <Card
-                className={`flex flex-col justify-between my-10 h-full h-[320px] transition-all duration-500 ease-out group border-2 border-border/80 hover:border-primary/60 dark:border-border/80 dark:hover:border-primary/70 shadow-lg hover:shadow-xl bg-muted/40 backdrop-blur-sm transform hover:-translate-y-1 ${
-                  visibleCards[index]
-                    ? "translate-x-0 opacity-100"
-                    : "translate-x-6 opacity-0"
-                }`}
-                style={{ transitionDelay: `${600 + index * 200}ms` }}
+        {/* ── Slider ── */}
+        {swiperReady && (
+          <div
+            className={`transition-all duration-700 delay-200 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+          >
+            <div className="px-1 py-2">
+              <Swiper
+                modules={[Navigation, Autoplay]}
+                spaceBetween={20}
+                loop={educationData.education.length > 3}
+                autoplay={{
+                  delay: 3500,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: true,
+                }}
+                navigation={{
+                  prevEl: prevRef.current,
+                  nextEl: nextRef.current,
+                }}
+                onBeforeInit={(swiper) => {
+                  // @ts-ignore
+                  swiper.params.navigation.prevEl = prevRef.current;
+                  // @ts-ignore
+                  swiper.params.navigation.nextEl = nextRef.current;
+                }}
+                slidesPerView={1}
+                breakpoints={{
+                  768:  { slidesPerView: 2, spaceBetween: 20 },
+                  1280: { slidesPerView: 3, spaceBetween: 24 },
+                }}
+                // style={{ paddingBottom: "8px" }}
               >
-                <CardContent className="p-4 md:p-6 flex flex-col h-full">
-                  {/* Header Info */}
-                  <div className="flex items-start justify-between mb-4 md:mb-6">
-                    <div className="flex-1">
-                      <div className="flex items-center mb-2">
-                        <GraduationCap className="h-4 w-4 md:h-5 md:w-5 text-primary mr-2" />
-                        <h3 className="font-serif text-[12px] md:text-[14px] font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
-                          {edu.degree}
-                        </h3>
-                      </div>
-                      <p className="text-[11px] md:text-[14px] font-medium text-primary mb-2">
-                        {edu.institution}
-                      </p>
-                      <div className="flex items-center gap-4 text-muted-foreground">
-                        <div className="flex items-center">
-                          <MapPin className="h-3 w-3 md:h-4 md:w-4 mr-1" />
-                          <span className="text-[11px] md:text-[13px]">
-                            {edu.location}
-                          </span>
-                        </div>
-                        <div className="flex items-center">
-                          <Calendar className="h-3 w-3 md:h-4 md:w-4 mr-1" />
-                          <span className="text-[11px] md:text-[13px]">
-                            {edu.period}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <Badge
-                      variant="secondary"
-                      className="text-[10px] md:text-[12px] py-1 px-2 border border-border/60 hover:border-primary/50 transition-colors duration-300"
-                    >
-                      {edu.status}
-                    </Badge>
-                  </div>
+                {educationData.education.map((item, index) => (
+                  <SwiperSlide key={index}>
+                    <Card className="group min-h-82 max-h-82 flex flex-col border border-border/60 hover:border-primary/40 bg-card shadow-sm hover:shadow-xl transition-all my-1 duration-300 overflow-hidden">
+                      {/* Top accent bar */}
+                      <div className="h-1 w-full bg-gradient-to-r from-primary/40 via-primary to-primary/40 flex-shrink-0" />
 
-                  {/* Details */}
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-2 md:mb-4 group-hover:text-primary transition-colors text-[11px] md:text-[14px] duration-300">
-                      Highlights:
-                    </h4>
-                    <ul className="space-y-1 md:space-y-2 pr-2 overflow-y-auto scrollbar-thin scrollbar-thumb-primary/40 scrollbar-track-transparent max-h-[180px]">
-                      {edu.details.map((detail, idx) => (
-                        <li key={idx} className="flex items-start">
-                          <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-primary rounded-full mt-1.5 mr-2 flex-shrink-0"></div>
-                          <span className="text-muted-foreground text-[11px] md:text-[13px] group-hover:text-foreground transition-colors duration-300">
-                            {detail}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </CardContent>
-              </Card>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+                      <CardContent className=" flex flex-col flex-1">
+
+                        {/* Icon row */}
+                        <div className="flex items-start justify-between mb-4">
+                          <div className="p-2.5 rounded-xl bg-primary/10 border border-primary/20 group-hover:bg-primary/20 transition-all duration-300 flex-shrink-0">
+                            <GraduationCap className="w-5 h-5 text-primary" />
+                          </div>
+                          {item.status && (
+                            <Badge
+                              variant="secondary"
+                              className="text-[10px] px-2.5 py-1 border border-border/60 flex-shrink-0"
+                            >
+                              {item.status}
+                            </Badge>
+                          )}
+                        </div>
+
+                        {/* Degree */}
+                        <h3 className="font-serif font-semibold text-sm text-foreground leading-snug group-hover:text-primary transition-colors duration-300 mb-1">
+                          {item.degree}
+                        </h3>
+
+                        {/* Institution */}
+                        <p className="text-xs font-medium text-primary mb-3">
+                          {item.institution}
+                        </p>
+
+                        {/* Location + Period */}
+                        <div className="flex flex-wrap items-center gap-3 text-muted-foreground mb-4">
+                          {item.location && (
+                            <div className="flex items-center gap-1">
+                              <MapPin className="w-3 h-3 flex-shrink-0" />
+                              <span className="text-[11px]">{item.location}</span>
+                            </div>
+                          )}
+                          <div className="flex items-center gap-1">
+                            <Calendar className="w-3 h-3 flex-shrink-0" />
+                            <span className="text-[11px] font-medium">{item.period}</span>
+                          </div>
+                        </div>
+
+                        {/* Description */}
+                        {item?.description && (
+                          <p className="text-xs text-muted-foreground leading-relaxed mb-4">
+                            {item?.description}
+                          </p>
+                        )}
+
+                        {/* Highlights */}
+                        {item.details && item.details.length > 0 && (
+                          <div className=" border-t border-border/40">
+                            <p className="text-[10px] font-bold text-foreground uppercase tracking-wider mb-2">
+                              Highlights
+                            </p>
+                            <ul className="space-y-1.5">
+                              {item.details.map((detail: string, idx: number) => (
+                                <li key={idx} className="flex items-start gap-2">
+                                  <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
+                                  <span className="text-[11px] text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors duration-300">
+                                    {detail}
+                                  </span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+
+            {/* Navigation */}
+            <div className="flex justify-center items-center gap-4 mt-6">
+              <button
+                ref={prevRef}
+                className="w-10 h-10 flex items-center justify-center rounded-full border border-border/60 bg-background hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 shadow-sm"
+                aria-label="Previous"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <span className="text-xs text-muted-foreground font-medium">
+                {educationData.education.length} qualifications
+              </span>
+              <button
+                ref={nextRef}
+                className="w-10 h-10 flex items-center justify-center rounded-full border border-border/60 bg-background hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-200 shadow-sm"
+                aria-label="Next"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        )}
+
       </div>
     </section>
   );

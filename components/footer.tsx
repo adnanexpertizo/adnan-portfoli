@@ -11,14 +11,14 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-background text-secondary-foreground ">
-      <div className="absolute w-full h-[500px] lg:h-[700px] z-5">
-        <div className="relative w-full h-[500px] lg:h-[700px]">
+    <footer className="bg-background text-secondary-foreground">
+      <div className="absolute w-full h-[100px] lg:h-[120px] z-5">
+        <div className="relative w-full h-[100px] lg:h-[200px]">
           <Image
             src="/Background Noise.svg"
             alt="a;t"
             fill
-            className="object-cover w-full h-full hover:scale-105 transition-transform duration-500 ease-out"
+            className="object-cover w-full h-full"
           />
         </div>
       </div>

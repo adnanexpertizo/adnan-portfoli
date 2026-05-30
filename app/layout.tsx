@@ -25,31 +25,44 @@ const rubik = Rubik({
   variable: "--font-rubik",
   weight: ["300", "400", "500", "600", "700", "800", "900"],
 })
+
 export const metadata: Metadata = {
-  title: "Adnan Rafiq's Portfolio",
+  title: "Adnan Rafiq – MERN Stack Developer",
   description:
-    "Adnan Rafiq's Portfolio - showcasing projects, skills, and experiences.",
-  keywords: ["Adnan", "portfolio", "web developer", "projects", "skills", "adnan's portfolio"],
+    "BSCS Graduate and MERN Stack Developer with 3+ years of experience building modern web applications using React, Next.js, Node.js, and MongoDB. Also a certified Safety Officer who builds digital tools for HSE management.",
+  keywords: [
+    "Adnan Rafiq",
+    "MERN Stack Developer",
+    "React Developer",
+    "Next.js Developer",
+    "Node.js",
+    "MongoDB",
+    "Full Stack Developer",
+    "BSCS Graduate",
+    "Safety Management System",
+    "Adnan Rafiq IT Portfolio",
+  ],
   robots: "index, follow",
   openGraph: {
-    title: "Adnan Rafiq's Portfolio",
-    description: "Explore my work and projects in web development.",
-    url: "https://adnan-portfoli.vercel.app/",
+    title: "Adnan Rafiq – MERN Stack Developer Portfolio",
+    description:
+      "Explore Adnan Rafiq's full-stack projects, technical skills, and developer experience.",
+    url: "https://adnan-it-portfolio.vercel.app/",
     type: "website",
     images: [
       {
-        url: "/images/fav-icon.png",
+        url: "/profile-image.png",
         width: 1200,
         height: 630,
-        alt: "Adnan Rafiq Portfolio Preview",
+        alt: "Adnan Rafiq IT Portfolio Preview",
       },
     ],
   },
   icons: {
-    icon: "/profile-image.png",
+    icon: "/adnan2.png",
   },
-  generator: "v0.app",
-  metadataBase: new URL("https://adnan-portfoli.vercel.app"),
+  generator: "Next.js 14",
+  metadataBase: new URL("https://adnan-it-portfolio.vercel.app"),
 }
 
 export default function RootLayout({

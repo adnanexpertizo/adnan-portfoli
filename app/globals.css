@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -20,7 +22,6 @@
   --bgcolor: #eef7ec;
   --secondary-foreground: #3a523c;
   --muted: #f2f8ef;
-  /* --muted-foreground: #00152d99; */
   --muted-foreground: #333333;
   --accent: #14684d;
   --accent-foreground: #f7fdf8;
@@ -119,15 +120,46 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* ── Font families ── */
+  --font-sans:  'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-mono:  'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
 }
 
+/* ── Base layer ── */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'cv11', 'ss01';
+    font-variation-settings: 'opsz' 32;
+  }
 
-/* Enhanced smooth transitions for theme switching and all interactions */
+  /* Headings use Playfair Display */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+  }
+
+  /* Code / pre blocks use JetBrains Mono */
+  code, pre, kbd, samp {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-feature-settings: 'calt' 1, 'liga' 1;
+  }
+}
+
+/* ── Smooth transitions for theme switching ── */
 *,
 *::before,
 *::after {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.2s ease, transform 0.2s
-    ease, opacity 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease,
+    box-shadow 0.2s ease, transform 0.2s ease, opacity 0.3s ease;
 }
 
 html {
@@ -135,7 +167,7 @@ html {
   transition: background-color 0.3s ease;
 }
 
-/* Professional button and interactive element transitions */
+/* ── Interactive element transitions ── */
 button,
 a,
 [role="button"],
@@ -157,12 +189,12 @@ a:active,
   transform: translateY(0px) scale(0.98);
 }
 
-/* Subtle card hover effects */
+/* ── Card hover ── */
 .group:hover {
   transform: translateY(-2px);
 }
 
-/* Simplified fade-in animations */
+/* ── Animations ── */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -178,7 +210,6 @@ a:active,
   animation: fadeInUp 0.6s ease forwards;
 }
 
-/* Professional scale animation for modals */
 @keyframes scaleIn {
   from {
     opacity: 0;
@@ -194,8 +225,6 @@ a:active,
   animation: scaleIn 0.3s ease forwards;
 }
 
-/* Removed excessive animations and simplified transitions */
-/* Professional scale utilities */
 .scale-102 {
   transform: scale(1.02);
 }
@@ -204,91 +233,89 @@ a:active,
   transform: scale(1.02);
 }
 
-/* Removed excessive stagger animations and kept only essential ones */
-.animate-stagger-1 {
-  animation-delay: 0.1s;
-}
-.animate-stagger-2 {
-  animation-delay: 0.2s;
-}
-.animate-stagger-3 {
-  animation-delay: 0.3s;
-}
+.animate-stagger-1 { animation-delay: 0.1s; }
+.animate-stagger-2 { animation-delay: 0.2s; }
+.animate-stagger-3 { animation-delay: 0.3s; }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-}
 @keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 6px rgba(var(--primary-rgb), 0.6), 0 0 12px rgba(var(--primary-rgb), 0.3); }
-  50%      { box-shadow: 0 0 12px rgba(var(--primary-rgb), 0.8), 0 0 24px rgba(var(--primary-rgb), 0.4); }
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(var(--primary-rgb), 0.6), 0 0 12px rgba(var(--primary-rgb), 0.3);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(var(--primary-rgb), 0.8), 0 0 24px rgba(var(--primary-rgb), 0.4);
+  }
 }
 
-/* If you want subtle gradient movement with the same theme color */
 @keyframes gradientShift {
   0%   { background-position: 0% 50%; }
   50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+
 @keyframes gradient-x {
   0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  50%       { background-position: 100% 50%; }
 }
+
 .animate-gradient-x {
   background-size: 200% 200%;
   animation: gradient-x 5s ease infinite;
 }
+
 @keyframes pulse-slow {
   0%, 100% { opacity: 0.7; }
-  50% { opacity: 1; }
+  50%       { opacity: 1; }
 }
+
 .animate-pulse-slow {
   animation: pulse-slow 4s ease-in-out infinite;
 }
 
-/* @keyframes moveUp {
-  0% {
-    transform: translateY(100vh);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100vh);
-    opacity: 0;
-  }
-}
-
-@keyframes initialMove {
-  0% { transform: translateY(100px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
-} */
-
 .animate-initial-move {
   animation: initialMove 1s ease-out forwards;
   position: absolute;
-} 
+}
+
 .tabs {
   position: absolute;
   transition: all 0.1s ease-out;
 }
-/* Custom Scrollbar Styling */
+
+/* ── Custom Scrollbar ── */
 .scrollbar-thin::-webkit-scrollbar {
   width: 6px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background-color: rgba(59, 130, 246, 0.4); /* Tailwind primary/40 */
+  background-color: rgba(28, 136, 94, 0.4);
   border-radius: 8px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(59, 130, 246, 0.6);
+  background-color: rgba(28, 136, 94, 0.6);
+}
+
+/* ── Typography utilities ── */
+.font-display {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-body {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.font-code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── Letter spacing for Inter at small sizes ── */
+.text-xs,
+.text-sm {
+  letter-spacing: 0.01em;
+}
+
+/* ── Playfair Display italic utility ── */
+.font-serif-italic {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
 }

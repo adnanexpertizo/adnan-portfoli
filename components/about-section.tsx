@@ -1,195 +1,145 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Shield, Award, Users, CheckCircle } from "lucide-react";
 import aboutData from "@/data/about.json";
 import { useEffect, useRef, useState } from "react";
-import { AskModal } from "./AskModal"; // keep if still using
-import { useTypewriter } from "./useTypewriter";
+
+/* Use same icons as safety — or swap for IT-specific ones if your about.json uses different keys */
+const iconMap: Record<string, React.FC<any>> = { Shield, Award, Users, CheckCircle };
 
 export function AboutSection() {
   const [isVisible, setIsVisible] = useState(false);
-  const [visibleCards, setVisibleCards] = useState<boolean[]>([]);
-  const [isMuted, setIsMuted] = useState(true);
-
+  const [isMuted, setIsMuted]     = useState(true);
   const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  const iconMap = {
-    Shield,
-    Award,
-    Users,
-    CheckCircle,
-  };
-console.log("About data loaded:", aboutData);
-  const typedText = useTypewriter(
-    [
-      "a MERN Stack Developer",
-      "a BSCS Graduate",
-      "having 3+ years of experience",
-      "skilled in React.js, Next.js & Node.js",
-      "passionate about AI & modern web technologies",
-    ],
-    100
-  );
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
+  const videoRef   = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          aboutData.highlights.forEach((_, index) => {
-            setTimeout(() => {
-              setVisibleCards((prev) => {
-                const newVisible = [...prev];
-                newVisible[index] = true;
-                return newVisible;
-              });
-            }, index * 150);
-          });
-        }
-      },
+      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
       { threshold: 0.1 }
     );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
-
-    const videoObserver = new IntersectionObserver(
+    const obs = new IntersectionObserver(
       ([entry]) => {
-        if (!video) return;
-
-        if (entry.isIntersecting) {
-          video.play().catch((err) => {
-            console.log("Autoplay prevented:", err);
-          });
-        } else {
-          video.pause();
-        }
+        if (entry.isIntersecting) video.play().catch(() => {});
+        else video.pause();
       },
-      { threshold: 0.55 }
+      { threshold: 0.5 }
     );
-
-    videoObserver.observe(video);
-
-    return () => videoObserver.disconnect();
+    obs.observe(video);
+    return () => obs.disconnect();
   }, []);
 
-  const handleVideoInteraction = () => {
-    if (videoRef.current) {
-      const video = videoRef.current;
-      if (video.paused) {
-        video.play().catch(() => {});
-      } else {
-        video.pause();
-      }
-      if (isMuted) {
-        video.muted = false;
-        setIsMuted(false);
-      }
-    }
-  };
-
   return (
-    <section
-      ref={sectionRef}
-      id="about"
-      className="relative py-[40px] bg-muted/50 overflow-hidden md:py-20 py-10"
-    >
-      <div className="container lg:px-[144px] md:px-[64px] px-[8px] mx-auto">
-        <div className="text-center mb-[32px]">
-          <h2
-            className={`font-serif text-[24px] lg:text-[28px] font-bold text-foreground mb-[16px] transform transition-all duration-1000 ease-out ${
-              isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-            }`}
-          >
+    <section ref={sectionRef} id="about" className="relative py-16 sm:py-20 bg-muted/30 overflow-hidden">
+      {/* Decorative glow */}
+      <div className="absolute top-0 right-0 w-72 h-72 lg:w-96 lg:h-96 rounded-full bg-primary/5 blur-3xl pointer-events-none -translate-y-1/3 translate-x-1/4" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-8 lg:px-16">
+
+        {/* Section header */}
+        <div className={`w-full mb-12 sm:mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+          <span className="inline-block text-xs font-semibold text-primary uppercase tracking-widest mb-3">
+            About Me
+          </span>
+          <h2 className="font-serif text-xl sm:text-2xl font-bold text-foreground mb-4">
             {aboutData.title}
           </h2>
+          <div className="w-12 h-1 bg-primary rounded-full" />
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-[32px] items-center mb-[40px]">
-          <div className="order-2 lg:order-1">
-            <Card
-              className={`overflow-hidden hover:shadow-2xl transition-all duration-700 ease-out transform ${
-                isVisible ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0"
-              } border-2 border-border/80 hover:border-primary/60 bg-card shadow-lg dark:border-border/80 dark:hover:border-primary/70 dark:shadow-xl dark:hover:shadow-2xl dark:bg-card/98 backdrop-blur-sm`}
-              style={{ transitionDelay: "400ms" }}
-            >
-              <CardContent className="p-0">
-                <video
-                  ref={videoRef}
-                  src={aboutData.workVideo ||"https://res.cloudinary.com/dpvsay7rw/video/upload/v1771601574/Adnan_Rafiq_-_MERN_Stack_Portfolio_Intro_1_ylokny.mp4"
-                                  }
-                  poster={aboutData.workPoster || "https://res.cloudinary.com/dpvsay7rw/video/upload/v1771601574/so_2/Adnan_Rafiq_-_MERN_Stack_Portfolio_Intro_1_ylokny.jpg"
-                                  }
-                  muted={isMuted}
-                  loop
-                  playsInline
-                  preload="metadata"
-                  controls       
-                  width={600}
-                  height={600}
-                  className="w-full h-[250px] md:h-[330px] object-cover transition-transform duration-700 ease-out"
-                />
-            
-              </CardContent>
-            </Card>
-          </div>
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
-          <div
-            className={`order-1 lg:order-2 px-[8px] transform transition-all duration-1000 ease-out ${
-              isVisible ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0"
-            }`}
-            style={{ transitionDelay: "600ms" }}
-          >
-            <h3 className="font-serif text-[16px] md:text-[20px] font-semibold text-foreground mb-[6px]">
-              {aboutData.mainTitle}
-            </h3>
-            <h2 className="text-[12px] sm:text-[16px] md:text-[16px] text-start font-semibold text-primary mb-2 min-w-[250px] max-w-[400px] lg:max-w-[470px]">
-              <span className="text-[#CD312D]">I am</span> {typedText}
-              <span className="animate-pulse">|</span>
-            </h2>
-
-            {aboutData.description.map((paragraph, index) => (
-              <p
-                key={index}
-                className="text-[12px] md:text-[16px] text-muted-foreground mb-[9px] text-pretty"
-              >
-                {paragraph}
-              </p>
-            ))}
-
-            <div className="flex flex-wrap gap-[8px]">
-              {aboutData.skills.map((skill, index) => (
-                <Badge
-                  key={skill}
-                  variant="secondary"
-                  className={`text-[11px] md:text-[13px] transition-all duration-300 ease-out transform ${
-                    isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-                  } border border-border/60 hover:border-primary/50 dark:border-border/70 dark:hover:border-primary/60`}
-                  style={{ transitionDelay: `${800 + index * 100}ms` }}
-                >
-                  {skill}
-                </Badge>
-              ))}
+          {/* Video */}
+          <div className={`transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}>
+            <div className="relative rounded-2xl overflow-hidden border border-border shadow-2xl shadow-primary/5">
+              <video
+                ref={videoRef}
+                src={
+                  (aboutData as any).workVideo ||
+                  "https://res.cloudinary.com/dpvsay7rw/video/upload/v1771601574/Adnan_Rafiq_-_MERN_Stack_Portfolio_Intro_1_ylokny.mp4"
+                }
+                poster={
+                  (aboutData as any).workPoster ||
+                  "https://res.cloudinary.com/dpvsay7rw/video/upload/v1771601574/so_2/Adnan_Rafiq_-_MERN_Stack_Portfolio_Intro_1_ylokny.jpg"
+                }
+                muted={isMuted}
+                loop
+                playsInline
+                preload="metadata"
+                controls
+                className="w-full h-56 sm:h-72 lg:h-80 object-cover"
+              />
+              <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-2xl pointer-events-none" />
             </div>
           </div>
+
+          {/* Text */}
+          <div className={`transition-all duration-700 delay-300 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}`}>
+            <h3 className="font-serif text-xl sm:text-2xl font-semibold text-foreground mb-4">
+              {aboutData.mainTitle}
+            </h3>
+
+            <div className="space-y-4 mb-8">
+              {aboutData.description.map((para: string, i: number) => (
+                <p key={i} className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                  {para}
+                </p>
+              ))}
+            </div>
+
+            {/* Skills badges */}
+            {(aboutData as any).skills && (aboutData as any).skills.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {(aboutData as any).skills.map((skill: string, i: number) => (
+                  <span
+                    key={skill}
+                    className={`px-3 py-1 rounded-full text-xs font-medium border border-primary/25 bg-primary/10 text-primary hover:bg-primary/20 transition-all duration-200 cursor-default ${
+                      isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
+                    }`}
+                    style={{ transitionDelay: `${400 + i * 50}ms` }}
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+
         </div>
 
-        {/* Your commented-out highlights grid – uncomment if needed */}
+        {/* Highlight cards */}
+        {aboutData.highlights && aboutData.highlights.length > 0 && (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3 mt-8">
+            {aboutData.highlights.map((item: any, i: number) => {
+              const Icon = iconMap[item.icon] || Shield;
+              return (
+                <div
+                  key={i}
+                  className={`flex items-center gap-2 md:gap-3 p-2.5 md:p-3 rounded-xl bg-background border border-border shadow-sm hover:border-primary/40 hover:-translate-y-0.5 transition-all duration-300 ${
+                    isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                  }`}
+                  style={{ transitionDelay: `${300 + i * 100}ms` }}
+                >
+                  <div className="p-1.5 rounded-lg bg-primary/10 flex-shrink-0">
+                    <Icon className="w-4 h-4 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-foreground leading-tight">{item.title}</p>
+                    {item.value && <p className="text-[10px] text-muted-foreground">{item.value}</p>}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
       </div>
     </section>
   );

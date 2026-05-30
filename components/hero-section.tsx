@@ -1,225 +1,305 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Download, Mail, Volume2, VolumeX, X } from "lucide-react";
+import { Download, Mail, Volume2, VolumeX } from "lucide-react";
 import Image from "next/image";
 import heroData from "@/data/hero.json";
 import { AskModal } from "./AskModal";
 import { useState, useEffect } from "react";
-import CVTemplate from "./CvTemplate";
+import { createPortal } from "react-dom";
 import { FaWhatsapp } from "react-icons/fa";
+import { useTypewriter } from "./useTypewriter";
+
+/* ─── Floating buttons via portal — renders above ALL sections ─── */
+function FloatingButtons({
+  isPlaying,
+  onToggleMusic,
+  onWhatsApp,
+}: {
+  isPlaying: boolean;
+  onToggleMusic: () => void;
+  onWhatsApp: () => void;
+}) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+  if (!mounted) return null;
+
+  return createPortal(
+    <>
+      <button
+        onClick={onToggleMusic}
+        className="fixed bottom-5 left-4 w-10 h-10 sm:w-12 sm:h-12 bg-primary text-primary-foreground rounded-full shadow-xl flex items-center justify-center hover:scale-110 active:scale-95 transition-transform duration-200"
+        style={{ zIndex: 9999 }}
+        aria-label="Toggle background music"
+      >
+        {isPlaying
+          ? <Volume2 className="w-4 h-4 sm:w-5 sm:h-5" />
+          : <VolumeX className="w-4 h-4 sm:w-5 sm:h-5" />}
+      </button>
+      <button
+        onClick={onWhatsApp}
+        className="fixed bottom-5 right-4 w-10 h-10 sm:w-12 sm:h-12 rounded-full shadow-xl flex items-center justify-center text-white hover:scale-110 active:scale-95 transition-transform duration-200"
+        style={{ zIndex: 9999, backgroundColor: "#25D366" }}
+        aria-label="Chat on WhatsApp"
+      >
+        <FaWhatsapp className="w-5 h-5 sm:w-6 sm:h-6" />
+      </button>
+    </>,
+    document.body
+  );
+}
 
 export function HeroSection() {
-  const scrollToContact = () => {
-    const element = document.querySelector("#contact");
-    if (element) {
-      const navHeight = 120;
-      const elementPosition =
-        element.getBoundingClientRect().top + window.pageYOffset - navHeight;
-      window.scrollTo({ top: elementPosition, behavior: "smooth" });
-    }
-  };
+  const [openModal, setOpenModal]           = useState(false);
+  const [audio, setAudio]                   = useState<HTMLAudioElement | null>(null);
+  const [isPlaying, setIsPlaying]           = useState(false);
+  const [showFloating, setShowFloating]     = useState(false);
+  const [mounted, setMounted]               = useState(false);
+  const [showScrollHint, setShowScrollHint] = useState(false);
 
-  const [openModal, setOpenModal] = useState(false);
-  const [openCVModal, setOpenCVModal] = useState(false);
-  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [showMusicButton, setShowMusicButton] = useState(false);
+  /* IT-specific typewriter strings */
+  const typedText = useTypewriter(
+    [
+      "a MERN Stack Developer",
+      "a BSCS Graduate",
+      "a React & Next.js Developer",
+      "skilled in Node.js & MongoDB",
+      "passionate about AI & modern web",
+    ],
+    80
+  );
 
   useEffect(() => {
-    const newAudio = new Audio("/interview.wav");
-    newAudio.loop = true;
-    newAudio.volume = 0.1;
+    setMounted(true);
+    const t1 = setTimeout(() => setShowScrollHint(true), 3000);
+    const t2 = setTimeout(() => setShowScrollHint(false), 10000);
+    /* IT portfolio uses music.mp3 at volume 0.5 */
+    const newAudio = new Audio("/music.mp3");
+    newAudio.loop   = true;
+    newAudio.volume = 0.5;
     setAudio(newAudio);
-
-    const autoPlay = async () => {
-      try {
-        await newAudio.play();
-        setIsPlaying(true);
-      } catch (err) {
-        console.warn("Autoplay blocked by browser:", err);
-      }
-    };
-    autoPlay();
-
+    newAudio.play().catch(() => {});
     return () => {
       newAudio.pause();
       newAudio.currentTime = 0;
+      clearTimeout(t1);
+      clearTimeout(t2);
     };
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => setShowFloating(window.scrollY > 60);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const toggleMusic = async () => {
     if (!audio) return;
-    if (isPlaying) {
-      audio.pause();
-      setIsPlaying(false);
-    } else {
-      try {
-        await audio.play();
-        setIsPlaying(true);
-      } catch (error) {
-        console.error("Play blocked:", error);
-      }
-    }
+    if (isPlaying) { audio.pause(); setIsPlaying(false); }
+    else { await audio.play().catch(() => {}); setIsPlaying(true); }
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowMusicButton(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // ✅ Smart WhatsApp Redirect Handler (with structured message)
-  const handleWhatsAppClick = () => {
-    const phoneNumber = "923077522229";
-    const message = encodeURIComponent(
-      `Hello! I would like to get in touch with you.\n\nPlease provide the following details:\n• Your Full Name:\n• Company Name:\n• Designation:\n• Purpose of Contact:\n\nThank you!`
-    );
-
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-    const url = isMobile
-      ? `whatsapp://send?phone=${phoneNumber}&text=${message}` // Opens mobile WhatsApp
-      : `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${message}`; // Fallback for desktop
-
-    window.open(url, "_blank");
+  const scrollToContact = () => {
+    const el = document.querySelector("#contact");
+    if (el) window.scrollTo({ top: (el as HTMLElement).offsetTop - 80, behavior: "smooth" });
   };
 
-  if (!heroData || !heroData.name) {
-    console.error("heroData is missing or invalid:", heroData);
-    return <div>Error: Hero data not loaded</div>;
-  }
-
-  // ✅ Function to handle CV download
   const handleDownloadCV = () => {
-    const cvLink = heroData.cvLink || "/Adnan_Rafiq_CV.pdf"; // fallback if not defined in hero.json
-    const link = document.createElement("a");
-    link.href = cvLink;
-    link.download = "Adnan_Rafiq_CV.pdf"; // name for the downloaded file
+    const link      = document.createElement("a");
+    link.href       = heroData.cvLink || "/Adnan_Rafiq_CV.pdf";
+    link.download   = "Adnan_Rafiq_CV.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
+  const handleWhatsApp = () => {
+    const phone = "923077522229";
+    const msg = encodeURIComponent(
+      `*💻 IT Portfolio Inquiry*\n\n` +
+      `Hi Adnan! I visited your developer portfolio and would like to get in touch.\n\n` +
+      `*My Details:*\n` +
+      `• Name: \n` +
+      `• Company: \n` +
+      `• Designation: \n` +
+      `• Purpose of Contact: \n\n` +
+      `Looking forward to hearing from you!`
+    );
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    window.open(
+      isMobile
+        ? `whatsapp://send?phone=${phone}&text=${msg}`
+        : `https://web.whatsapp.com/send?phone=${phone}&text=${msg}`,
+      "_blank"
+    );
+  };
+
+  if (!heroData || !heroData.name) return null;
+
   return (
-    <section
-      id="home"
-      className="bg-background mx-auto relative overflow-hidden"
-    >
-      <div className="absolute w-full h-full lg:h-[700px] z-5">
-        <div className="relative w-full h-full lg:h-[700px]">
-          <Image
-            src="/Background Noise.svg"
-            alt="a;t"
-            fill
-            className="object-cover w-full h-full hover:scale-105 transition-transform duration-500 ease-out"
-          />
+    <>
+      <section id="home" className="relative bg-background overflow-hidden min-h-screen flex items-center">
+        {/* Background texture */}
+        <div className="absolute inset-0 z-[1] pointer-events-none">
+          <Image src="/Background Noise.svg" alt="" fill className="object-cover opacity-60" priority />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_70%_40%,var(--color-primary)_0%,transparent_70%)] opacity-[0.07] dark:opacity-[0.12]" />
         </div>
-      </div>
-      <div className="relative z-7 md:pt-40 min-h-[85vh] pt-24 md:pb-20 pb-12 md:px-36 px-4 flex items-center justify-center flex-wrap ">
-      {/* <div className="container px-2 relative z-10 mx-auto"> */}
-        <div className="flex flex-wrap items-center justify-between gap-8 md:gap-[42px] lg:gap-[60px]">
-          {/* LEFT SECTION */}
-          <div className="w-full lg:w-[60%] flex flex-col items-center lg:items-start text-center lg:text-left order-2 lg:order-1 px-1">
-            <h1 className="font-serif text-2xl sm:text-4xl lg:text-6xl font-bold text-foreground mb-4">
-              {heroData.name}
-            </h1>
 
-            <p className="text-sm sm:text-lg font-semibold text-muted-foreground mb-4">
-              {heroData.subtitle}
-            </p>
-            <p className="text-xs sm:text-base text-muted-foreground mb-8">
-              {heroData.description}
-            </p>
+        <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-8 lg:px-16 pt-24 pb-16 sm:pt-28 sm:pb-20">
+          <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-8 lg:gap-10">
 
-            <div className="flex justify-start w-full">
-              <AskModal openModal={openModal} setOpenModal={setOpenModal} />
+            {/* ── Left: Text ── */}
+            <div className={`flex-1 text-center lg:text-left transition-all duration-700 ease-out ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+
+              {/* Eyebrow pill */}
+              <div className="inline-flex items-center gap-2 mt-5 md:mt-auto px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-medium mb-3 sm:mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                Open to Work & Opportunities
+              </div>
+
+              {/* Name */}
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-2 leading-tight">
+                {heroData.name}
+              </h1>
+
+              {/* Typewriter — "I am ..." */}
+              <p className="text-base sm:text-lg font-semibold text-primary mb-4 min-h-[1.75rem]">
+                <span className="text-destructive">I am </span>
+                {typedText}
+                <span className="animate-pulse text-primary/60">|</span>
+              </p>
+
+              {/* Description */}
+              <p className="text-sm sm:text-base text-muted-foreground mb-5 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                {heroData.description}
+              </p>
+
+              {/* Ask modal */}
+              <div className="flex justify-center lg:justify-start mb-5">
+                <AskModal openModal={openModal} setOpenModal={setOpenModal} />
+              </div>
+
+              {/* CTA buttons */}
+              <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
+                {heroData.buttons.map((button, i) => (
+                  <Button
+                    key={i}
+                    size="lg"
+                    variant={button.type === "primary" ? "default" : "outline"}
+                    className={`gap-2 text-sm font-medium px-6 transition-all duration-200 ${
+                      button.type === "primary"
+                        ? "shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:-translate-y-0.5"
+                        : "hover:-translate-y-0.5"
+                    }`}
+                    onClick={() => {
+                      if (button.icon === "Download") handleDownloadCV();
+                      else if (button.action === "scrollToContact") scrollToContact();
+                    }}
+                  >
+                    {button.icon === "Download" && <Download className="h-4 w-4" />}
+                    {button.icon === "Mail"     && <Mail     className="h-4 w-4" />}
+                    {button.text}
+                  </Button>
+                ))}
+              </div>
             </div>
 
-            <div className="flex gap-3 sm:gap-4 justify-center lg:justify-start mt-6">
-              {heroData.buttons.map((button, index) => (
-                <Button
-                  key={index}
-                  size="lg"
-                  variant={button.type === "primary" ? "default" : "outline"}
-                  onClick={() => {
-                    if (button.icon === "Download") {
-                      handleDownloadCV(); // ✅ Download CV on click
-                    } else if (button.action === "scrollToContact") {
-                      scrollToContact();
-                    }
-                  }}
-                >
-                  {button.icon === "Download" && (
-                    <Download className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                  )}
-                  {button.icon === "Mail" && (
-                    <Mail className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                  )}
-                  {button.text}
-                </Button>
-              ))}
-            </div>
-          </div>
+            {/* ── Right: Profile image ── */}
+            <div className={`flex-shrink-0 transition-all duration-700 delay-200 ease-out ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+              <div className="relative">
 
-          {/* RIGHT SECTION */}
-          <div className="flex justify-center md:justify-end order-1 lg:order-2 w-full lg:w-[30%]">
-            <div className="w-56 h-56 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-primary/20 shadow-xl relative">
-            {/* <div className="w-56 h-56 lg:w-80 lg:h-80 relative"> */}
-              <Image
-                src={heroData.profileImage || "/placeholder.svg"}
-                alt={`${heroData.name} - ${heroData.title}`}
-                layout="fill"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500 ease-out"
-              />
+                {/* Orbiting rings */}
+                <div
+                  className="absolute rounded-full border-2 border-dashed border-primary/30"
+                  style={{ inset: "-20px", animation: "orbit-cw 130s linear infinite" }}
+                />
+                <div
+                  className="absolute rounded-full border-[2px] border-dashed border-primary/30"
+                  style={{ inset: "-40px", animation: "orbit-ccw 130s linear infinite" }}
+                />
+
+                {/* Glow */}
+                <div className="absolute inset-0 rounded-full bg-primary/20 blur-2xl scale-110 pointer-events-none" />
+
+                {/* Photo */}
+                <div className="relative w-52 h-52 sm:w-64 sm:h-64 lg:w-80 lg:h-80 xl:w-[360px] xl:h-[360px] rounded-full overflow-hidden border-4 border-primary/30 shadow-2xl shadow-primary/20">
+                  <Image
+                    src={heroData.profileImage || "/placeholder.svg"}
+                    alt={heroData.name}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+
+                {/* BSCS badge — top right */}
+                <div className="absolute -top-3 -right-4 md:-right-3 sm:top-3 sm:right-3 bg-card border border-border rounded-xl px-2 py-1 shadow-xl flex items-center gap-1 hover:-translate-y-0.5 transition-transform">
+                  <span className="text-lg">🎓</span>
+                  <div>
+                    <p className="md:text-[10px] text-[8px] font-medium text-foreground leading-none">BSCS</p>
+                    <p className="md:text-[10px] text-[7px] text-muted-foreground mt-0.5">Graduate</p>
+                  </div>
+                </div>
+
+                {/* Experience badge — top left */}
+                <div className="absolute -top-3 -left-4 md:-left-3 sm:top-3 sm:left-3 bg-card border border-border rounded-xl px-2 py-1 shadow-xl flex items-center gap-1 hover:-translate-y-0.5 transition-transform">
+                  <span className="text-lg">⭐</span>
+                  <div>
+                    <p className="md:text-[10px] text-[8px] font-medium text-foreground leading-none">3+ Years</p>
+                    <p className="md:text-[10px] text-[7px] text-muted-foreground mt-0.5">Experience</p>
+                  </div>
+                </div>
+
+                {/* Stack badge — bottom left */}
+                <div className="absolute -bottom-3 -left-4 md:-left-3 sm:bottom-3 sm:left-3 bg-card border border-border rounded-xl px-2 py-1 shadow-xl flex items-center gap-1 hover:-translate-y-0.5 transition-transform">
+                  <span className="text-lg">⚛️</span>
+                  <div>
+                    <p className="md:text-[10px] text-[8px] font-medium text-foreground leading-none">MERN Stack</p>
+                    <p className="md:text-[10px] text-[7px] text-muted-foreground mt-0.5">Full Stack</p>
+                  </div>
+                </div>
+
+                {/* Projects badge — bottom right */}
+                <div className="absolute -bottom-3 -right-4 md:-right-3 sm:bottom-3 sm:right-3 bg-card border border-border rounded-xl px-2 py-1 shadow-xl flex items-center gap-1 hover:-translate-y-0.5 transition-transform">
+                  <span className="text-lg">🚀</span>
+                  <div>
+                    <p className="md:text-[10px] text-[8px] font-medium text-foreground leading-none">10+ Projects</p>
+                    <p className="md:text-[10px] text-[7px] text-muted-foreground mt-0.5">Delivered</p>
+                  </div>
+                </div>
+
+              </div>
             </div>
+
           </div>
         </div>
-      </div>
 
-      {/* 📄 CV MODAL */}
-      {openCVModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-          <div className="relative bg-white rounded-2xl w-[95%] md:w-[80%] lg:w-[70%] max-h-[90vh] overflow-y-auto p-6 shadow-2xl animate-fadeIn">
-            <button
-              onClick={() => setOpenCVModal(false)}
-              className="absolute top-3 right-3 text-gray-600 hover:text-red-500 transition"
-            >
-              <X className="w-6 h-6" />
-            </button>
-            <CVTemplate />
+        {/* Scroll hint */}
+        <div
+          className={`absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5 transition-all duration-700 ${
+            showScrollHint ? "opacity-60 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none"
+          }`}
+        >
+          <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-widest">Scroll</p>
+          <div className="w-5 h-8 rounded-full border border-muted-foreground/40 flex items-start justify-center pt-1.5">
+            <div className="w-1 h-2 rounded-full bg-primary animate-bounce" />
           </div>
         </div>
+
+        {/* Orbit keyframes */}
+        <style>{`
+          @keyframes orbit-cw  { from { transform: rotate(0deg);   } to { transform: rotate(360deg);  } }
+          @keyframes orbit-ccw { from { transform: rotate(0deg);   } to { transform: rotate(-360deg); } }
+        `}</style>
+      </section>
+
+      {showFloating && (
+        <FloatingButtons
+          isPlaying={isPlaying}
+          onToggleMusic={toggleMusic}
+          onWhatsApp={handleWhatsApp}
+        />
       )}
-
-      {/* 🎵 Floating Music + WhatsApp Buttons */}
-      {showMusicButton && (
-        <>
-          {/* Music Button */}
-          <button
-            onClick={toggleMusic}
-            className="fixed bottom-5 left-4 cursor-pointer md:left-5 z-40 bg-primary text-white md:p-3 p-2 rounded-full shadow-lg hover:scale-105 transition-transform"
-            aria-label="Toggle background music"
-          >
-            {isPlaying ? (
-              <Volume2 className="md:w-6 md:h-6 w-5 h-5" />
-            ) : (
-              <VolumeX className="md:w-6 md:h-6 w-5 h-5" />
-            )}
-          </button>
-
-          {/* ✅ WhatsApp Button (with structured message) */}
-          <button
-            onClick={handleWhatsAppClick}
-            className="fixed bottom-5 right-4 cursor-pointer md:right-5 z-40 bg-green-500 text-white md:p-3 p-2 rounded-full shadow-lg hover:bg-green-600 hover:scale-105 transition-transform"
-            aria-label="Chat on WhatsApp"
-          >
-            <FaWhatsapp className="md:w-6 md:h-6 w-5 h-5" />
-          </button>
-        </>
-      )}
-    </section>
+    </>
   );
 }
