@@ -12,11 +12,11 @@ import Image from "next/image";
 
 export function ExperienceSection() {
   const [swiperReady, setSwiperReady] = useState(false);
-  const [isVisible,   setIsVisible]   = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   const sectionRef = useRef<HTMLElement>(null);
-  const prevRef    = useRef<HTMLButtonElement | null>(null);
-  const nextRef    = useRef<HTMLButtonElement | null>(null);
+  const prevRef = useRef<HTMLButtonElement | null>(null);
+  const nextRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => { setSwiperReady(true); }, []);
 
@@ -33,19 +33,10 @@ export function ExperienceSection() {
     <section
       ref={sectionRef}
       id="experience"
-      className="relative z-0 bg-background overflow-hidden"
+      className="relative py-16 sm:py-20 bg-muted/30 overflow-hidden"
     >
       {/* Background texture */}
-      <div className="absolute inset-0 z-[1] pointer-events-none">
-        <Image
-          src="/Background Noise.svg"
-          alt=""
-          fill
-          className="object-cover opacity-60"
-          priority
-        />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_30%_60%,var(--color-primary)_0%,transparent_70%)] opacity-[0.07] dark:opacity-[0.12]" />
-      </div>
+      <div className="absolute top-0 right-0 w-72 h-72 lg:w-96 lg:h-96 rounded-full bg-primary/5 blur-3xl pointer-events-none -translate-y-1/3 translate-x-1/4" />
 
       {/* Glow blob */}
       <div className="absolute bottom-0 right-0 w-64 h-64 rounded-full bg-primary/5 blur-3xl pointer-events-none translate-y-1/3 translate-x-1/4" />
@@ -54,9 +45,8 @@ export function ExperienceSection() {
 
         {/* ── Section Header ── */}
         <div
-          className={`text-center mb-12 sm:mb-16 transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
+          className={`text-center mb-12 sm:mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
         >
           <span className="inline-block text-xs font-semibold text-primary uppercase tracking-widest mb-3">
             Professional Journey
@@ -82,9 +72,8 @@ export function ExperienceSection() {
             {experienceData.experiences.map((item, index) => (
               <div
                 key={index}
-                className={`relative flex gap-10 transition-all duration-700 ${
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}
+                className={`relative flex gap-10 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                  }`}
                 style={{ transitionDelay: `${index * 120}ms` }}
               >
                 {/* Timeline icon */}
@@ -169,9 +158,8 @@ export function ExperienceSection() {
         <div className="md:hidden">
           {swiperReady && (
             <div
-              className={`transition-all duration-700 delay-300 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
+              className={`transition-all duration-700 delay-300 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                }`}
             >
               <Swiper
                 modules={[Navigation, Autoplay]}

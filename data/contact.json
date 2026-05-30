@@ -1,6 +1,6 @@
 {
   "title": "Get In Touch",
-  "subtitle": "Ready to discuss safety solutions for your organization",
+  "subtitle": "Reach out for collaborations, projects, or just to say hi!",
   "contactInfo": {
     "email": "adnan.rafiq@email.com",
     "phone": "+971 50 123 4567",
@@ -34,7 +34,7 @@
       "name": "message",
       "label": "Message",
       "type": "textarea",
-      "placeholder": "Tell me about your safety requirements...",
+      "placeholder": "Tell me about your project ideas...",
       "required": true
     }
   ]

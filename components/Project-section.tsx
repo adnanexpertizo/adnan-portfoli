@@ -253,7 +253,7 @@ export function ProjectsSection() {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 capitalize ${
+                className={`px-5 py-2 rounded-full text-[10px] md:text-sm font-medium transition-all duration-200 capitalize ${
                   activeTab === tab
                     ? "bg-primary text-primary-foreground shadow-sm"
                     : "text-muted-foreground hover:text-foreground"
